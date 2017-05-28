@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "org.swecha.freedombox.freedombox"
+        applicationId "org.freedombox.freedombox"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
