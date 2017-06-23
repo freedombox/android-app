@@ -1,24 +1,77 @@
 <html>
 <head>
+  <meta name="viewport"
+        content="
+          height = device-height,
+          width = device-width,
+          initial-scale = 1.0,
+          minimum-scale = 1.0,
+          maximum-scale = 1.0,
+          user-scalable = no
+        " />
 <style>
-img {
-  position: relative;
-  display: block;
-  width: 120px;
-  height: 120px;
-  float: left;
-  padding: 5px;
-  margin: 10px;
-  background: #aeaeae;
-}
+  img {
+    position: relative;
+    display: block;
+    width: 70%;
+    height: 70%;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
 
-div#container {
-  width: 300px;
-  height: 100%;
-  padding: 20px;;
-  background: #ae0000;
-  margin: auto;
-}
+  div#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+  }
+
+  div.row {
+    position: relative;
+    width: 100%;
+    height: 33%;
+    display: block;
+  }
+
+  div.component {
+    position: relative;
+    display: inline-block;
+    float: left;
+    width: 44%;
+    height: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  p.component-label {
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: medium;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 5%;
+  }
+
+  div#call {
+    background-color: #40a9e3;
+  }
+  div#radio {
+  background-color: #b2689d;
+  }
+  div#wifi {
+  background-color: #da5f5a;
+  }
+  div#book {
+  background-color: #ffbc16;
+  }
+  div#video {
+  background-color: #b77225;
+  }
+  div#message {
+  background-color: #38929a;
+  }
 
 </style>
 
@@ -30,10 +83,37 @@ div#container {
 </head>
 <body>
   <div id="container">
-    <img src="chat.svg">
-    <img src="radio.svg">
-    <img src="phone.svg" onClick="launch('sip')">
-    <img src="video.svg" onClick="launch('vlc')">
+    <div class="row">
+      <div class="component" id="call">
+        <img src="call.png" onClick="launch('sip')">
+        <p class="component-label">Phone Call</p>
+      </div>
+      <div class="component" id="radio">
+        <img src="radio.png" onClick="launch('ampache')">
+        <p class="component-label">Radio</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="component" id="wifi">
+        <img src="wifi.png" onClick="launch('browser')">
+        <p class="component-label">Internet</p>
+      </div>
+      <div class="component" id="book">
+        <img src="book.png">
+        <p class="component-label">Digital Library</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="component" id="video">
+        <img src="video.png">
+        <p class="component-label">Video</p>
+      </div>
+      <div class="component" id="message">
+        <img src="message.png">
+        <p class="component-label">Messaging</p>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
