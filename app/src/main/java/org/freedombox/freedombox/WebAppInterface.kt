@@ -2,8 +2,6 @@ package org.freedombox.freedombox
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.PackageManager.NameNotFoundException
 import android.net.Uri
 import android.util.Log
 import android.webkit.JavascriptInterface
@@ -13,36 +11,37 @@ import kotlin.collections.HashMap
 
 class WebAppInterface internal constructor(context: Context) {
     internal var context = context
-    internal var packages = HashMap<String, List<String>>()
+    internal var intents = HashMap<String, List<Intent?>>()
 
     init {
-        // TODO Refactor to generic names
-        this.packages.put("voip", listOf("im.vector.alpha"))
-        this.packages.put("video", listOf("org.videolan.vlc")) // TODO
-        this.packages.put("radio", listOf("com.sound.ampache", "com.antoniotari.reactiveampacheapp"))
-        this.packages.put("library", listOf("com.nextcloud.client", "com.ocloud24.android")) // TODO
-        this.packages.put("messaging", listOf("im.vector.alpha"))
+        this.intents.put("voip", getLaunchIntent("im.vector.alpha"))
+        this.intents.put("messaging", getLaunchIntent("im.vector.alpha"))
+        this.intents.put("internet", getWebIntent("http://"))
+        this.intents.put("library", getWebIntent("http://10.42.0.1:8080"))
+        this.intents.put("video", getWebIntent("http://10.42.0.1:8096"))
+        this.intents.put("radio", getLaunchIntent("com.sound.ampache",
+                "com.antoniotari.reactiveampacheapp"))
+    }
 
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://"))
-        val resolveInfo = this.context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        this.packages.put("internet", listOf(resolveInfo.resolvePackageName))
+    fun getLaunchIntent(vararg packageNames: String): List<Intent> {
+        return packageNames.map { packageName ->
+            this.context.packageManager.getLaunchIntentForPackage(packageName)}
+    }
+
+    fun getWebIntent(vararg urls: String): List<Intent> {
+        // TODO Launching browser works only if a default browser is set
+        return urls.map { url ->  Intent(Intent.ACTION_VIEW, Uri.parse(url))}
     }
 
     @JavascriptInterface
     fun launchApp(appName: String) {
-        val packageManager = this.context.packageManager
-        val packageCandidates = this.packages[appName]
-        try {
-            val selectedPackage = packageCandidates!!.firstOrNull { candidate ->
-                packageManager.getLaunchIntentForPackage(candidate) != null
-            } ?: throw NameNotFoundException()
-            val intent = packageManager.getLaunchIntentForPackage(selectedPackage)
-            intent.addCategory("android.intent.category.LAUNCHER")
+        val intent = this.intents[appName]!!.firstOrNull{ intent -> intent != null }
+        if (intent != null) {
             this.context.startActivity(intent)
-        } catch (ex: NameNotFoundException) {
-            Toast.makeText(this.context, "App for ${appName.capitalize()} is not installed",
+        } else {
+            Toast.makeText(this.context, "App not installed",
                     Toast.LENGTH_SHORT).show()
-            Log.i("ERROR:", appName + " is not installed")
+            Log.i("ERROR:", "App for $appName is not installed")
         }
-    }
+   }
 }
