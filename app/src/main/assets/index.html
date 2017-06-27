@@ -46,7 +46,7 @@
   }
 
   p.component-label {
-    font-family: cursive;
+    font-family: Helvetica;
     font-weight: bolder;
     font-size: medium;
     color: #ffffff;
@@ -54,23 +54,23 @@
     padding-bottom: 5%;
   }
 
-  div#call {
+  div#voip {
     background-color: #40a9e3;
   }
   div#radio {
-  background-color: #b2689d;
+    background-color: #b2689d;
   }
-  div#wifi {
-  background-color: #da5f5a;
+  div#internet {
+    background-color: #da5f5a;
   }
-  div#book {
-  background-color: #ffbc16;
+  div#library {
+    background-color: #ffbc16;
   }
   div#video {
-  background-color: #b77225;
+    background-color: #b77225;
   }
-  div#message {
-  background-color: #38929a;
+  div#messaging {
+    background-color: #38929a;
   }
 
 </style>
@@ -84,32 +84,32 @@
 <body>
   <div id="container">
     <div class="row">
-      <div class="component" id="call">
-        <img src="call.png" onClick="launch('sip')">
-        <p class="component-label">Phone Call</p>
+      <div class="component" id="voip">
+        <img src="voip.png" onclick="launch('voip')">
+        <p class="component-label">VoIP</p>
       </div>
       <div class="component" id="radio">
-        <img src="radio.png" onClick="launch('ampache')">
+        <img src="radio.png" onclick="launch('radio')">
         <p class="component-label">Radio</p>
       </div>
     </div>
     <div class="row">
-      <div class="component" id="wifi">
-        <img src="wifi.png" onClick="launch('browser')">
+      <div class="component" id="internet">
+        <img src="internet.png" onclick="launch('internet')">
         <p class="component-label">Internet</p>
       </div>
-      <div class="component" id="book">
-        <img src="book.png">
-        <p class="component-label">Digital Library</p>
+      <div class="component" id="library">
+        <img src="library.png" onclick="launch('library')">
+        <p class="component-label">Library</p>
       </div>
     </div>
     <div class="row">
       <div class="component" id="video">
-        <img src="video.png">
+        <img src="video.png" onclick="launch('video')">
         <p class="component-label">Video</p>
       </div>
-      <div class="component" id="message">
-        <img src="message.png">
+      <div class="component" id="messaging">
+        <img src="messaging.png" onclick="launch('messaging')">
         <p class="component-label">Messaging</p>
       </div>
     </div>
