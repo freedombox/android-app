@@ -14,4 +14,12 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-include ':app'
+package org.freedombox.freedombox
+
+import android.app.Application
+import android.test.ApplicationTestCase
+
+/**
+ * [Testing Fundamentals](http://d.android.com/tools/testing/testing_android.html)
+ */
+class ApplicationTest : ApplicationTestCase<Application>(Application::class.java)

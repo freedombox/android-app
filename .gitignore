@@ -11,7 +11,7 @@
 *.class
 
 # generated files
-bin/  
+bin/
 gen/
 
 # Local configuration file (sdk path, etc)
@@ -24,11 +24,10 @@ local.properties
 # Android Studio
 .idea/
 .gradle
-gradle  
 /*/local.properties
 /*/out
 /*/*/build
-build  
+build
 /*/*/production
 *.iml
 *.iws
