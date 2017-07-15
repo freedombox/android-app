@@ -29,7 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val transaction = this.supportFragmentManager.beginTransaction()
 
         transaction.replace(fragmentContainerId, fragment, fragment.javaClass.name)
-        
+
         if (addToBackStack) {
             transaction.addToBackStack(fragment.javaClass.name)
         }

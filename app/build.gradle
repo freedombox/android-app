@@ -24,7 +24,7 @@ android {
     defaultConfig {
         applicationId "org.freedombox.freedombox"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -42,6 +42,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+
 repositories {
     mavenCentral()
 }
