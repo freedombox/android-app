@@ -14,23 +14,26 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox
+package org.freedombox.freedombox.Views.Activities
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.webkit.WebView
 
-class MainActivity : AppCompatActivity() {
-    private var mWebView: WebView? = null
+abstract class BaseActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
-    override fun onCreate(paramBundle: Bundle?) {
-        super.onCreate(paramBundle)
+    fun loadFragment(fragmentContainerId: Int, fragment: Fragment, addToBackStack: Boolean) {
+        val transaction = this.supportFragmentManager.beginTransaction()
 
-        setContentView(R.layout.activity_main)
+        transaction.replace(fragmentContainerId, fragment, fragment.javaClass.name)
+        
+        if (addToBackStack) {
+            transaction.addToBackStack(fragment.javaClass.name)
+        }
 
-        this.mWebView = findViewById(R.id.activity_main_webview) as WebView
-        this.mWebView!!.addJavascriptInterface(WebAppInterface(this), "Android")
-        this.mWebView!!.settings.javaScriptEnabled = true
-        this.mWebView!!.loadUrl("file:///android_asset/index.html")
+        transaction.commit()
     }
 }
