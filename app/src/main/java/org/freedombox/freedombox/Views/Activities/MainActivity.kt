@@ -24,6 +24,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loadFragment(R.id.rootLayout, SplashFragment.new(Bundle()))
+        loadFragment(R.id.rootLayout, SplashFragment.new(savedInstanceState ?: Bundle()))
     }
 }
