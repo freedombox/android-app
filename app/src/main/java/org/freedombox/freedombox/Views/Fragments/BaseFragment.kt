@@ -14,16 +14,18 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox.Views.Activities
+package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
-import org.freedombox.freedombox.R
-import org.freedombox.freedombox.Views.Fragments.SplashFragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
-class MainActivity : BaseActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        loadFragment(R.id.rootLayout, SplashFragment.new(Bundle()))
+abstract class BaseFragment : android.support.v4.app.Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
+        return inflater.inflate(getLayoutId(), container, false)
     }
+
+    protected abstract fun getLayoutId(): Int
 }

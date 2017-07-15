@@ -14,29 +14,20 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox.Views.Activities
+package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import org.freedombox.freedombox.R
 
-abstract class BaseActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class SplashFragment : BaseFragment() {
+    override fun getLayoutId() = R.layout.fragment_splash
 
-        setContentView(R.layout.base)
-    }
+    companion object {
+        fun new(args: Bundle): SplashFragment {
+            val fragment = SplashFragment()
+            fragment.arguments = args
 
-    fun loadFragment(fragmentContainerId: Int, fragment: Fragment, addToBackStack: Boolean = false) {
-        val transaction = this.supportFragmentManager.beginTransaction()
-
-        transaction.replace(fragmentContainerId, fragment, fragment.javaClass.name)
-
-        if (addToBackStack) {
-            transaction.addToBackStack(fragment.javaClass.name)
+            return fragment
         }
-
-        transaction.commit()
     }
 }
