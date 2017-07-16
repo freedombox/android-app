@@ -18,7 +18,7 @@ package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
 import org.freedombox.freedombox.R
 
 class SplashFragment : BaseFragment() {
