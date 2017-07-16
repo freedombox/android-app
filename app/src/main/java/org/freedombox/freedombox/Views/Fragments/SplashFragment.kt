@@ -17,10 +17,20 @@
 package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_splash.*
 import org.freedombox.freedombox.R
 
 class SplashFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.fragment_splash
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        btnSplashNext.setOnClickListener {
+            Toast.makeText(activity, "Clicked", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     companion object {
         fun new(args: Bundle): SplashFragment {

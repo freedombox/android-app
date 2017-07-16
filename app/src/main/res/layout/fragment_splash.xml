@@ -23,17 +23,24 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/fbx_logo"
+        android:id="@+id/imgFbxLogo"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
+        android:contentDescription="@string/desc_splash_logo"
         android:src="@mipmap/ic_freedombox_logo" />
 
     <ImageView
+        android:id="@+id/btnSplashNext"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:contentDescription="@string/desc_navigate_next"
         android:src="@drawable/ic_next_black_24dp" />
 </RelativeLayout>
