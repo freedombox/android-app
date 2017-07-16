@@ -20,12 +20,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.freedombox.freedombox.Applications.FreedomBoxApp
+import org.freedombox.freedombox.Components.AppComponent
 
 abstract class BaseFragment : android.support.v4.app.Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val appComponent = (activity.application as FreedomBoxApp).appComponent
+        appComponent.inject(this)
+        injectFragment(appComponent)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return inflater.inflate(getLayoutId(), container, false)
     }
 
     protected abstract fun getLayoutId(): Int
+
+    protected abstract fun injectFragment(appComponent: AppComponent)
 }

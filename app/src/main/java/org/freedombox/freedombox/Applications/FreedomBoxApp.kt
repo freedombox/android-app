@@ -14,28 +14,24 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-buildscript {
-    ext {
-        kotlin_version = '1.1.3-2'
-        dagger_version = '2.11'
-    }
+package org.freedombox.freedombox.Applications
 
-    repositories {
-        jcenter()
-    }
+import android.app.Application
+import org.freedombox.freedombox.Components.AppComponent
+import org.freedombox.freedombox.Components.DaggerAppComponent
+import org.freedombox.freedombox.Modules.AppModule
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
+class FreedomBoxApp : Application() {
+    lateinit var appComponent: AppComponent
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
+    override fun onCreate() {
+        super.onCreate()
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+        appComponent = DaggerAppComponent
+                .builder()
+                .appModule(AppModule(this))
+                .build()
+
+        appComponent.inject(this)
+    }
 }

@@ -14,28 +14,21 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-buildscript {
-    ext {
-        kotlin_version = '1.1.3-2'
-        dagger_version = '2.11'
-    }
+package org.freedombox.freedombox.Components
 
-    repositories {
-        jcenter()
-    }
+import dagger.Component
+import org.freedombox.freedombox.Applications.FreedomBoxApp
+import org.freedombox.freedombox.Modules.AppModule
+import org.freedombox.freedombox.Views.Fragments.BaseFragment
+import org.freedombox.freedombox.Views.Fragments.SplashFragment
+import javax.inject.Singleton
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
+@Singleton
+@Component(modules = arrayOf(AppModule::class))
+interface AppComponent {
+    fun inject(application: FreedomBoxApp)
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
+    fun inject(baseFragment: BaseFragment)
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    fun inject(splashFragment: SplashFragment)
 }

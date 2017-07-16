@@ -16,12 +16,17 @@
 
 package org.freedombox.freedombox.Views.Fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
+import kotlinx.android.synthetic.main.fragment_splash.*
+import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.R
+import javax.inject.Inject
 
 class SplashFragment : BaseFragment() {
+    @Inject lateinit var sharedPreferences: SharedPreferences
+
     override fun getLayoutId() = R.layout.fragment_splash
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,4 +45,6 @@ class SplashFragment : BaseFragment() {
             return fragment
         }
     }
+
+    override fun injectFragment(appComponent: AppComponent) = appComponent.inject(this)
 }
