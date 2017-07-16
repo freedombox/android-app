@@ -24,11 +24,11 @@
 
     <ImageView
         android:id="@+id/imgFbxLogo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/desc_splash_logo"
-        android:src="@mipmap/ic_freedombox_logo" />
+        android:src="@drawable/logo_800px" />
 
     <ImageView
         android:id="@+id/btnSplashNext"
