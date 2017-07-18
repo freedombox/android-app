@@ -17,13 +17,15 @@
 package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.freedombox.freedombox.Applications.FreedomBoxApp
 import org.freedombox.freedombox.Components.AppComponent
+import org.freedombox.freedombox.Views.IBaseView
 
-abstract class BaseFragment : android.support.v4.app.Fragment() {
+abstract class BaseFragment : android.support.v4.app.Fragment(), IBaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,4 +42,12 @@ abstract class BaseFragment : android.support.v4.app.Fragment() {
     protected abstract fun getLayoutId(): Int
 
     protected abstract fun injectFragment(appComponent: AppComponent)
+
+    override fun showSnackMessage(message: String, duration: Int) {
+        Snackbar.make(
+                activity.findViewById(android.R.id.content),
+                message,
+                duration
+        ).show()
+    }
 }

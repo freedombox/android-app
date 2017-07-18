@@ -22,10 +22,13 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_splash.*
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.R
+import org.freedombox.freedombox.Utils.Connectivity.ConnectivityMonitor
 import javax.inject.Inject
 
 class SplashFragment : BaseFragment() {
     @Inject lateinit var sharedPreferences: SharedPreferences
+
+    @Inject lateinit var connectivityMonitor: ConnectivityMonitor
 
     override fun getLayoutId() = R.layout.fragment_splash
 
