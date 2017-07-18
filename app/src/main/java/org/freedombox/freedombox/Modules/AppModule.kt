@@ -17,11 +17,12 @@
 package org.freedombox.freedombox.Modules
 
 import android.app.Application
-import android.content.Context
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
 import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
+import org.freedombox.freedombox.Utils.Connectivity.ConnectivityMonitor
 import javax.inject.Singleton
 
 @Module class AppModule(val application: Application) {
@@ -29,4 +30,9 @@ import javax.inject.Singleton
     @Singleton
     fun provideSharedPreferences(): SharedPreferences = PreferenceManager
             .getDefaultSharedPreferences(application.applicationContext)
+
+    @Provides
+    @Singleton
+    fun provideConnectivityMonitor(): ConnectivityMonitor =
+            ConnectivityMonitor(application.applicationContext)
 }
