@@ -57,8 +57,8 @@ dependencies {
 
     // Test
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:$roboelectric_version"
-    testCompile "org.robolectric:shadows-support-v4:$roboelectric_version"
+    testCompile "org.robolectric:robolectric:$robolectric_version"
+    testCompile "org.robolectric:shadows-support-v4:$robolectric_version"
 }
 
 repositories {
