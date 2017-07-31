@@ -19,11 +19,11 @@ package org.freedombox.freedombox.Modules
 
 import android.app.Application
 import android.content.SharedPreferences
-import android.net.ConnectivityManager
 import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import org.freedombox.freedombox.Utils.Connectivity.ConnectivityMonitor
+import org.freedombox.freedombox.Utils.ImageRenderer
 import javax.inject.Singleton
 
 @Module class AppModule(val application: Application) {
@@ -36,4 +36,9 @@ import javax.inject.Singleton
     @Singleton
     fun provideConnectivityMonitor(): ConnectivityMonitor =
             ConnectivityMonitor(application.applicationContext)
+
+    @Provides
+    @Singleton
+    fun provideImageRenderer(): ImageRenderer =
+            ImageRenderer(application.applicationContext)
 }
