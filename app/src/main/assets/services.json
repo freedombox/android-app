@@ -1,0 +1,118 @@
+{
+    "services": [
+     {
+        "label": {
+            "en": "Conversations",
+            "te": "సంభాషణలు"
+        },
+       "description": {
+         "en": "VoIP and Message"
+        },
+        "icon": "icons/conversations",
+        "color": "#FF33B5E5",
+        "order": "1",
+        "android-apps": ["im.vector.alpha"],
+        "URL": {}
+    },
+        {
+        "label": {
+            "en": "Internet",
+            "te": "అంతర్జాలం"
+        },
+        "icon": "icons/internet",
+        "description": {
+          "en": "Browse the internet"
+        },
+        "color": "#303F9F",
+        "order": "2",
+        "android-apps": [],
+        "URL": {
+            "protocol": "https",
+            "domain": "www.startpage.com",
+            "port": "",
+            "path": ""
+        }
+    },
+   {
+        "label": {
+            "en": "Audio",
+            "te": "సంగీతం"
+        },
+        "icon": "icons/audio.svg",
+        "description": {
+          "en": "Listen to audio"
+        },
+        "color": "#FFFF4444",
+        "order": "3",
+        "android-apps": ["com.antoniotari.reactiveampacheapp", "com.sound.ampache"],
+        "URL": {}
+    },
+    {
+        "label": {
+            "en": "Video",
+            "te": "చలనచిత్రాలు"
+        },
+        "icon": "icons/video.png",
+        "description": {
+          "en": "Watch video streams"
+        },
+        "color": "#FF0000",
+        "order": "4",
+        "android-apps": [],
+        "URL": {
+            "protocol": "http",
+            "domain": "",
+            "port": "8096",
+            "path": ""
+        }   
+    },
+    {
+        "label": {
+            "en": "Library",
+            "te": "గ్రంధాలయం"
+        },
+        "icon": "icons/library.png",
+        "description": {
+          "en": "Digital Library of knowledge"
+        },
+        "color": "#000000",
+        "order": "5",
+        "android-apps": [],
+        "URL": {
+            "protocol": "http",
+            "domain": "",
+            "port": "8080",
+            "path": ""
+        }
+    },
+    {
+        "label": {
+            "en": "Plant Doctor",
+            "te": "తెగులు నిర్ఢారణ"
+        },
+        "icon": "icons/plantix.png",
+        "description": {
+          "en": "Know the health of crops"
+        },
+        "color": "#FF4081",
+        "order": "6",
+        "android-apps": ["com.peat.GartenBank"],
+        "URL": {}
+    },
+    {
+        "label": {
+            "en": "Naa Panta",
+            "te": "నా పంట"
+        },
+        "icon": "icons/naPanta.png",
+        "description": {
+          "en": "Real time market rates"
+        },
+        "color": "#FF99CC00",
+        "order": "7",
+        "android-apps": ["com.napanta.farmer.app"],
+        "URL": {}
+    }
+    ]
+}
+

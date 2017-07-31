@@ -22,12 +22,14 @@ import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.Components.DaggerAppComponent
 import org.freedombox.freedombox.Modules.AppModule
 import org.freedombox.freedombox.Utils.Connectivity.ConnectivityMonitor
+import org.freedombox.freedombox.Utils.ImageRenderer
 import javax.inject.Inject
 
 class FreedomBoxApp : Application() {
     lateinit var appComponent: AppComponent
 
     @Inject lateinit var connectivityMonitor: ConnectivityMonitor
+    @Inject lateinit var imageRenderer: ImageRenderer
 
     override fun onCreate() {
         super.onCreate()
@@ -38,6 +40,7 @@ class FreedomBoxApp : Application() {
                 .build()
 
         appComponent.inject(this)
+        imageRenderer.init()
         connectivityMonitor.init()
     }
 }
