@@ -23,5 +23,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Views.Activities.LauncherActivity">
+        </activity>
+
     </application>
 </manifest>
