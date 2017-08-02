@@ -33,7 +33,7 @@ class ImageRenderer(val context: Context) {
                 .listener(SvgSoftwareLayerSetter())
     }
 
-    fun getImageFromUrl(url: Uri, imageView: ImageView){
+    fun getImageFromUrl(url: Uri, imageView: ImageView) {
         requestBuilder
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .load(url)

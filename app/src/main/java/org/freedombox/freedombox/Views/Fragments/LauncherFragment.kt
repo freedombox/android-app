@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.google.gson.JsonArray
 import kotlinx.android.synthetic.main.card.view.*
 import kotlinx.android.synthetic.main.fragment_launcher.*
 import org.freedombox.freedombox.Components.AppComponent
@@ -33,11 +34,11 @@ import org.freedombox.freedombox.NetworkModule.getFBXApps
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.SERVICES_FILE
 import org.freedombox.freedombox.Utils.ImageRenderer
-import org.json.JSONArray
 import java.util.*
 import javax.inject.Inject
 
-class LauncherFragment: BaseFragment() {
+
+class LauncherFragment : BaseFragment() {
 
     @Inject lateinit var imageRenderRenderer: ImageRenderer
 
@@ -48,7 +49,7 @@ class LauncherFragment: BaseFragment() {
 
         //TODO: Use the URL from settings once it is setup
         val freedomboxUrl = DEFAULT_FREEDOM_BOX_URL
-        val services = getFBXApps(SERVICES_FILE, activity, freedomboxUrl)
+        val services = getFBXApps(SERVICES_FILE, activity.applicationContext, freedomboxUrl)
         app_grid.adapter = GridAdapter(context, services)
     }
 
@@ -63,7 +64,7 @@ class LauncherFragment: BaseFragment() {
 
     override fun injectFragment(appComponent: AppComponent) = appComponent.inject(this)
 
-    inner class GridAdapter(val context: Context, val items: JSONArray): BaseAdapter() {
+    inner class GridAdapter(val context: Context, val items: JsonArray) : BaseAdapter() {
 
         override fun getItem(position: Int): Any {
             return position
@@ -74,24 +75,32 @@ class LauncherFragment: BaseFragment() {
         }
 
         override fun getCount(): Int {
-            return items.length()
+            return items.size()
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater = context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val rowView = inflater.inflate(R.layout.card, null)
 
-            val appDetail = items.getJSONObject(position)
+            val appDetail = items[position].asJsonObject
 
-            val language = Locale.getDefault()
-            rowView.appName.text = appDetail.getJSONObject("label").getString(language.language)
-            rowView.appDescription.text = appDetail.getJSONObject("decription").getString(language.language)
+            val locale = Locale.getDefault()
+            rowView.appName.text = appDetail["label"]
+                    .asJsonObject[locale.language]
+                    .asString
+            rowView.appDescription.text = appDetail["description"]
+                    .asJsonObject[locale.language]
+                    .asString
 
-            imageRenderRenderer.getImageFromUrl(Uri.parse(appDetail.getString("icon")), rowView.appIcon)
+            imageRenderRenderer.getImageFromUrl(
+                    Uri.parse(appDetail["icon"].asString),
+                    rowView.appIcon
+            )
 
-            rowView.appIcon.setOnClickListener{}
+            rowView.appIcon.setOnClickListener {}
 
-            rowView.cardHolder.setBackgroundColor(Color.parseColor(appDetail.getString("color")))
+            rowView.cardHolder.setBackgroundColor(Color.parseColor(appDetail["color"].asString))
 
             return rowView
         }

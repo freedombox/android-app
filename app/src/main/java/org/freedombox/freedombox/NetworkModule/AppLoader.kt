@@ -1,4 +1,4 @@
-/* This file is part of FreedomBox.
+/** This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,36 +16,49 @@
 
 package org.freedombox.freedombox.NetworkModule
 
-import android.app.Activity
+import android.content.Context
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.Response.Listener
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
 import org.freedombox.freedombox.BuildConfig
-import org.json.JSONArray
 import org.json.JSONObject
 
-fun getFBXApps(url: String, activity: Activity, freedombox_url: String): JSONArray {
 
-    var services: JSONArray = JSONArray()
-
-    fun getServicesFromFile(): JSONArray {
-        val stream = activity.assets.open(url)
-        val services = JSONObject(stream.bufferedReader().use { it.readText() })
-        return services.getJSONArray("services")
+fun getServicesFromFile(context: Context, path: String): JsonArray {
+    val stream = context.assets.open(path)
+    val jsonString = stream.bufferedReader().use {
+        it.readText()
     }
 
-    if (BuildConfig.DEBUG) {
-        return getServicesFromFile()
-    } else {
-        val requestQueue = Volley.newRequestQueue(activity)
-        val url = listOf<String>(url, freedombox_url).joinToString(separator = "/")
-        val jsonObjectResponse = JsonObjectRequest(Request.Method.GET, url, null,
-                Listener<JSONObject> { response -> services = JSONArray(response!!.get("services")) },
-                Response.ErrorListener { services = getServicesFromFile() })
-        requestQueue.add(jsonObjectResponse)
-    }
-    return services
+    val parser = JsonParser()
+    val jsonElement = parser.parse(jsonString)
+
+    return jsonElement.asJsonObject["services"].asJsonArray
 }
 
+fun getFBXApps(url: String, context: Context, freedomboxUrl: String) =
+        if (BuildConfig.DEBUG) {
+            getServicesFromFile(context, url)
+        } else {
+            var services = JsonArray()
+            val requestQueue = Volley.newRequestQueue(context)
+            val uri = listOf(url, freedomboxUrl).joinToString(separator = "/")
+            val jsonObjectResponse = JsonObjectRequest(
+                    Request.Method.GET,
+                    uri,
+                    null,
+                    Listener<JSONObject> { response ->
+                        services = response.get("services") as JsonArray
+                    },
+                    Response.ErrorListener {
+                        services = getServicesFromFile(context, uri)
+                    }
+            )
+            requestQueue.add(jsonObjectResponse)
+
+            services
+        }
