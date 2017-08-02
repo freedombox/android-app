@@ -35,7 +35,6 @@ class ConnectivityMonitorTest {
     fun testSubscriber() {
         val monitor = ConnectivityMonitor(application.applicationContext)
 
-        monitor.init()
         monitor.subscribe {
             Assert.assertTrue(true)
         }

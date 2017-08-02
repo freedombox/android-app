@@ -8,7 +8,7 @@
       "description": {
         "en": "VoIP and Message"
       },
-      "icon": "icons/conversations",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Svg_example4.svg",
       "color": "#FF33B5E5",
       "order": "1",
       "android-apps": [

@@ -40,7 +40,5 @@ class FreedomBoxApp : Application() {
                 .build()
 
         appComponent.inject(this)
-        imageRenderer.init()
-        connectivityMonitor.init()
     }
 }

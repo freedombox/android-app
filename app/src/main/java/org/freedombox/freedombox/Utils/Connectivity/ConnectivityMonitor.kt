@@ -23,7 +23,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 
-class ConnectivityMonitor(val applicationContext: Context) {
+class ConnectivityMonitor(applicationContext: Context) {
     private val connectivityManager: ConnectivityManager = applicationContext
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -35,7 +35,7 @@ class ConnectivityMonitor(val applicationContext: Context) {
         }
     }
 
-    fun init() {
+    init {
         val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
         applicationContext.registerReceiver(networkReceiver, intentFilter)
     }

@@ -16,22 +16,21 @@ import org.freedombox.freedombox.SVGModules.SvgDrawableTranscoder
 import org.freedombox.freedombox.SVGModules.SvgSoftwareLayerSetter
 import java.io.InputStream
 
-class ImageRenderer(val context: Context) {
-    lateinit var requestBuilder: GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable>
-
-    fun init() {
-        requestBuilder = Glide.with(context)
-                .using(Glide.buildStreamModelLoader(Uri::class.java, context), InputStream::class.java)
-                .from(Uri::class.java)
-                .`as`(SVG::class.java)
-                .transcode(SvgDrawableTranscoder(), PictureDrawable::class.java)
-                .sourceEncoder(StreamEncoder())
-                .cacheDecoder(FileToStreamDecoder<SVG>(SvgDecoder()))
-                .decoder(SvgDecoder())
-                .dontAnimate()
-                .error(R.drawable.ic_logo)
-                .listener(SvgSoftwareLayerSetter())
-    }
+class ImageRenderer(context: Context) {
+    val requestBuilder: GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable> =
+            Glide.with(context)
+                    .using(
+                            Glide.buildStreamModelLoader(Uri::class.java, context),
+                            InputStream::class.java)
+                    .from(Uri::class.java)
+                    .`as`(SVG::class.java)
+                    .transcode(SvgDrawableTranscoder(), PictureDrawable::class.java)
+                    .sourceEncoder(StreamEncoder())
+                    .cacheDecoder(FileToStreamDecoder<SVG>(SvgDecoder()))
+                    .decoder(SvgDecoder())
+                    .dontAnimate()
+                    .error(R.drawable.ic_logo)
+                    .listener(SvgSoftwareLayerSetter())
 
     fun getImageFromUrl(url: Uri, imageView: ImageView) {
         requestBuilder
