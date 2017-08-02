@@ -28,10 +28,12 @@ import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.card.view.*
 import kotlinx.android.synthetic.main.fragment_launcher.*
 import org.freedombox.freedombox.Components.AppComponent
+import org.freedombox.freedombox.DEFAULT_FREEDOM_BOX_URL
+import org.freedombox.freedombox.NetworkModule.getFBXApps
 import org.freedombox.freedombox.R
+import org.freedombox.freedombox.SERVICES_FILE
 import org.freedombox.freedombox.Utils.ImageRenderer
 import org.json.JSONArray
-import org.json.JSONObject
 import java.util.*
 import javax.inject.Inject
 
@@ -44,11 +46,10 @@ class LauncherFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //TODO: get services from network
-        val stream = activity.assets.open("services.json")
-        val services = JSONObject(stream.bufferedReader().use { it.readText() })
-
-        app_grid.adapter = GridAdapter(context, services.getJSONArray("services"))
+        //TODO: Use the URL from settings once it is setup
+        val freedomboxUrl = DEFAULT_FREEDOM_BOX_URL
+        val services = getFBXApps(SERVICES_FILE, activity, freedomboxUrl)
+        app_grid.adapter = GridAdapter(context, services)
     }
 
     companion object {
