@@ -19,46 +19,48 @@ package org.freedombox.freedombox.NetworkModule
 import android.content.Context
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.Response.Listener
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import org.freedombox.freedombox.BuildConfig
+import org.freedombox.freedombox.Views.Fragments.LauncherFragment
 import org.json.JSONObject
 
+class AppLoader(val context: Context, val adapter: LauncherFragment.GridAdapter) {
+    val parser = JsonParser()
 
-fun getServicesFromFile(context: Context, path: String): JsonArray {
-    val stream = context.assets.open(path)
-    val jsonString = stream.bufferedReader().use {
-        it.readText()
+    fun getServicesFromFile(path: String): JsonArray {
+        val stream = context.assets.open(path)
+        val jsonString = stream.bufferedReader().use {
+            it.readText()
+        }
+
+        val jsonElement = parser.parse(jsonString)
+
+        return jsonElement.asJsonObject["services"].asJsonArray
     }
 
-    val parser = JsonParser()
-    val jsonElement = parser.parse(jsonString)
-
-    return jsonElement.asJsonObject["services"].asJsonArray
-}
-
-fun getFBXApps(url: String, context: Context, freedomboxUrl: String) =
+    fun getFBXApps(url: String, freedomboxUrl: String) =
         if (BuildConfig.DEBUG) {
-            getServicesFromFile(context, url)
-        } else {
-            var services = JsonArray()
+            adapter.setData(getServicesFromFile(url))
+        }
+        else {
             val requestQueue = Volley.newRequestQueue(context)
-            val uri = listOf(url, freedomboxUrl).joinToString(separator = "/")
+            val uri = listOf(freedomboxUrl, url).joinToString(separator = "/")
             val jsonObjectResponse = JsonObjectRequest(
                     Request.Method.GET,
                     uri,
                     null,
-                    Listener<JSONObject> { response ->
-                        services = response.get("services") as JsonArray
+                    Response.Listener<JSONObject> { response ->
+                        val services = parser.parse(response.get("services").toString())
+                                .asJsonArray
+                        adapter.setData(services)
                     },
                     Response.ErrorListener {
-                        services = getServicesFromFile(context, uri)
+                        adapter.setData(getServicesFromFile(url))
                     }
             )
             requestQueue.add(jsonObjectResponse)
-
-            services
         }
+}

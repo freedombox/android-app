@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.card.view.*
 import kotlinx.android.synthetic.main.fragment_launcher.*
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.DEFAULT_FREEDOM_BOX_URL
-import org.freedombox.freedombox.NetworkModule.getFBXApps
+import org.freedombox.freedombox.NetworkModule.AppLoader
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.SERVICES_FILE
 import org.freedombox.freedombox.Utils.ImageRenderer
@@ -46,11 +46,11 @@ class LauncherFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val adapter = GridAdapter(activity.applicationContext, JsonArray())
+        app_grid.adapter = adapter
 
         //TODO: Use the URL from settings once it is setup
-        val freedomboxUrl = DEFAULT_FREEDOM_BOX_URL
-        val services = getFBXApps(SERVICES_FILE, activity.applicationContext, freedomboxUrl)
-        app_grid.adapter = GridAdapter(context, services)
+        AppLoader(context, adapter).getFBXApps(SERVICES_FILE, DEFAULT_FREEDOM_BOX_URL)
     }
 
     companion object {
@@ -64,7 +64,12 @@ class LauncherFragment : BaseFragment() {
 
     override fun injectFragment(appComponent: AppComponent) = appComponent.inject(this)
 
-    inner class GridAdapter(val context: Context, val items: JsonArray) : BaseAdapter() {
+    inner class GridAdapter(val context: Context, var items: JsonArray) : BaseAdapter() {
+
+        fun setData(data: JsonArray) {
+            items = data
+            notifyDataSetChanged()
+        }
 
         override fun getItem(position: Int): Any {
             return position
