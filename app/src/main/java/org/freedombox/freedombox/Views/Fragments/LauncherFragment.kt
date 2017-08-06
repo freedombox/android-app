@@ -17,16 +17,7 @@
 
 package org.freedombox.freedombox.Views.Fragments
 
-import android.content.Context
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import com.google.gson.JsonArray
-import kotlinx.android.synthetic.main.card.view.*
 import kotlinx.android.synthetic.main.fragment_launcher.*
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.DEFAULT_FREEDOM_BOX_URL
@@ -34,7 +25,7 @@ import org.freedombox.freedombox.NetworkModule.AppLoader
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.SERVICES_FILE
 import org.freedombox.freedombox.Utils.ImageRenderer
-import java.util.*
+import org.freedombox.freedombox.Views.Adapter.GridAdapter
 import javax.inject.Inject
 
 
@@ -46,8 +37,8 @@ class LauncherFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val adapter = GridAdapter(activity.applicationContext, JsonArray())
-        app_grid.adapter = adapter
+        val adapter = GridAdapter(activity.applicationContext, imageRenderRenderer)
+        appGrid.adapter = adapter
 
         //TODO: Use the URL from settings once it is setup
         AppLoader(context, adapter).getFBXApps(SERVICES_FILE, DEFAULT_FREEDOM_BOX_URL)
@@ -63,51 +54,4 @@ class LauncherFragment : BaseFragment() {
     }
 
     override fun injectFragment(appComponent: AppComponent) = appComponent.inject(this)
-
-    inner class GridAdapter(val context: Context, var items: JsonArray) : BaseAdapter() {
-
-        fun setData(data: JsonArray) {
-            items = data
-            notifyDataSetChanged()
-        }
-
-        override fun getItem(position: Int): Any {
-            return position
-        }
-
-        override fun getItemId(position: Int): Long {
-            return items[position].hashCode().toLong()
-        }
-
-        override fun getCount(): Int {
-            return items.size()
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val inflater = context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val rowView = inflater.inflate(R.layout.card, null)
-
-            val appDetail = items[position].asJsonObject
-
-            val locale = Locale.getDefault()
-            rowView.appName.text = appDetail["label"]
-                    .asJsonObject[locale.language]
-                    .asString
-            rowView.appDescription.text = appDetail["description"]
-                    .asJsonObject[locale.language]
-                    .asString
-
-            imageRenderRenderer.getImageFromUrl(
-                    Uri.parse(appDetail["icon"].asString),
-                    rowView.appIcon
-            )
-
-            rowView.appIcon.setOnClickListener {}
-
-            rowView.cardHolder.setBackgroundColor(Color.parseColor(appDetail["color"].asString))
-
-            return rowView
-        }
-    }
 }

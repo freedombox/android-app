@@ -24,10 +24,10 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import org.freedombox.freedombox.BuildConfig
-import org.freedombox.freedombox.Views.Fragments.LauncherFragment
+import org.freedombox.freedombox.Views.Adapter.GridAdapter
 import org.json.JSONObject
 
-class AppLoader(val context: Context, val adapter: LauncherFragment.GridAdapter) {
+class AppLoader(val context: Context, val adapter: GridAdapter) {
     val parser = JsonParser()
 
     fun getServicesFromFile(path: String): JsonArray {
