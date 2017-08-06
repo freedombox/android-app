@@ -22,7 +22,7 @@
     android:layout_height="match_parent">
 
     <GridView
-        android:id="@+id/app_grid"
+        android:id="@+id/appGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numColumns="auto_fit"
