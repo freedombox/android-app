@@ -1,6 +1,5 @@
-package org.freedombox.freedombox
-
-/* This file is part of FreedomBox.
+/**
+ *  This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +14,8 @@ package org.freedombox.freedombox
  * You should have received a copy of the GNU General Public License
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.freedombox.freedombox
 
 const val DEFAULT_FREEDOM_BOX_URL = "10.42.0.1"
 const val SERVICES_FILE = "services.json"
