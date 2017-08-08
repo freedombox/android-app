@@ -30,7 +30,6 @@ import com.caverock.androidsvg.SVG
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.SVGModules.SvgDecoder
 import org.freedombox.freedombox.SVGModules.SvgDrawableTranscoder
-import org.freedombox.freedombox.SVGModules.SvgSoftwareLayerSetter
 import java.io.InputStream
 
 class ImageRenderer(context: Context) {
@@ -47,7 +46,6 @@ class ImageRenderer(context: Context) {
                     .decoder(SvgDecoder())
                     .dontAnimate()
                     .error(R.drawable.ic_logo)
-                    .listener(SvgSoftwareLayerSetter())
 
     fun getImageFromUrl(url: Uri, imageView: ImageView) {
         requestBuilder
