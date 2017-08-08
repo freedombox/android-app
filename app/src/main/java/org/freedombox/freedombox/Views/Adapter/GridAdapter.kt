@@ -25,7 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.card.view.appDescription
 import kotlinx.android.synthetic.main.card.view.appIcon
 import kotlinx.android.synthetic.main.card.view.appName
@@ -36,7 +35,7 @@ import java.util.Locale
 
 class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAdapter() {
 
-    private var items:JsonArray = JsonArray()
+    private var items = JsonArray()
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val inflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -48,12 +47,11 @@ class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAd
         rowView.appName.text = appDetail["label"]
                 .asJsonObject[locale.language]
                 .asString
-        print(rowView.appName.text.toString())
         rowView.appDescription.text = appDetail["description"]
                 .asJsonObject[locale.language]
                 .asString
 
-        imageRenderer.getImageFromUrl(
+        imageRenderer.laodIamgeFromURL(
                 Uri.parse(appDetail["icon"].asString),
                 rowView.appIcon
         )
@@ -65,19 +63,14 @@ class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAd
         return rowView
     }
 
-    override fun getItem(position: Int): JsonObject {
-        return items[position].asJsonObject
-    }
+    override fun getItem(position: Int) = items[position].asJsonObject
 
-    override fun getItemId(position: Int): Long {
-        return items[position].hashCode().toLong()
-    }
+    override fun getItemId(position: Int)= items[position].hashCode().toLong()
 
-    override fun getCount(): Int {
-        return items.size()
-    }
+    override fun getCount() = items.size()
 
-    fun setData(jsonArry: JsonArray) {
-        items = jsonArry
+    fun setData(jsonArray: JsonArray) {
+        items = jsonArray
+        notifyDataSetChanged()
     }
 }

@@ -47,7 +47,7 @@ class ImageRenderer(context: Context) {
                     .dontAnimate()
                     .error(R.drawable.ic_logo)
 
-    fun getImageFromUrl(url: Uri, imageView: ImageView) {
+    fun laodIamgeFromURL(url: Uri, imageView: ImageView) {
         requestBuilder
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .load(url)

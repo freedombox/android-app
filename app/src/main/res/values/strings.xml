@@ -2,4 +2,5 @@
     <string name="app_name">FreedomBox</string>
     <string name="desc_splash_logo">Splash Logo</string>
     <string name="desc_navigate_next">Navigate Next</string>
+    <string name="msg_apps_not_available">Apps are not Available</string>
 </resources>

@@ -17,5 +17,6 @@
 
 package org.freedombox.freedombox
 
-const val DEFAULT_FREEDOM_BOX_URL = "10.42.0.1"
-const val SERVICES_FILE = "services.json"
+const val DEFAULT_IP = "http://10.42.0.1"
+const val SERVICES_URL = "services.json"
+const val APP_RESPONSE = "appResponse"
