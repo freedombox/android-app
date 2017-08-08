@@ -21,7 +21,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.Views.Activities.LauncherActivity

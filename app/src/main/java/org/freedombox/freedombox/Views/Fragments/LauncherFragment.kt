@@ -18,7 +18,7 @@
 package org.freedombox.freedombox.Views.Fragments
 
 import android.os.Bundle
-import kotlinx.android.synthetic.main.fragment_launcher.*
+import kotlinx.android.synthetic.main.fragment_launcher.appGrid
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.DEFAULT_FREEDOM_BOX_URL
 import org.freedombox.freedombox.NetworkModule.AppLoader

@@ -18,7 +18,8 @@ package org.freedombox.freedombox.View.Adapter
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.card.view.*
+import kotlinx.android.synthetic.main.card.view.appDescription
+import kotlinx.android.synthetic.main.card.view.appName
 import org.freedombox.freedombox.BuildConfig
 import org.freedombox.freedombox.Utils.ImageRenderer
 import org.freedombox.freedombox.Views.Adapter.GridAdapter

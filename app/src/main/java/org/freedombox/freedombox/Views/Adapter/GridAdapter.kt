@@ -25,10 +25,13 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.card.view.*
+import kotlinx.android.synthetic.main.card.view.appDescription
+import kotlinx.android.synthetic.main.card.view.appIcon
+import kotlinx.android.synthetic.main.card.view.appName
+import kotlinx.android.synthetic.main.card.view.cardHolder
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.Utils.ImageRenderer
-import java.util.*
+import java.util.Locale
 
 class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAdapter() {
 
