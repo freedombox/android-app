@@ -23,5 +23,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Views.Activities.DiscoveryActivity" />
+
     </application>
 </manifest>
