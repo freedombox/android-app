@@ -38,8 +38,18 @@ class GridAdapterTest {
     val applicationContext = application.applicationContext
     private val gridAdapter = GridAdapter(applicationContext, imageRenderer = ImageRenderer(applicationContext))
     private var jsonArray = JsonArray()
-    private val jsonObject = JsonParser().parse("{'label': {'en': 'conversations'}, 'description': " +
-            "{'en': 'someDescription'}, 'icon': 'value', 'color': '#FFFFFF'}").asJsonObject
+    private val jsonObject = JsonParser().parse("""
+    {
+      "label": {
+        "en": "conversations",
+        "te": "సంభాషణలు"
+      },
+      "description": {
+        "en": "someDescription"
+      },
+      "icon": "icons/conversations",
+      "color": "#FF33B5E5"
+    } """).asJsonObject
 
     @Before
     fun setUp() {
