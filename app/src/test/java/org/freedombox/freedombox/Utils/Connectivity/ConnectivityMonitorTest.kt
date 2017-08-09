@@ -19,8 +19,8 @@ package org.freedombox.freedombox.Utils.Connectivity
 
 import android.content.Intent
 import android.net.ConnectivityManager
-import junit.framework.Assert
 import org.freedombox.freedombox.BuildConfig
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -36,7 +36,7 @@ class ConnectivityMonitorTest {
         val monitor = ConnectivityMonitor(application.applicationContext)
 
         monitor.subscribe {
-            Assert.assertTrue(true)
+            assertTrue(true)
         }
 
         val intent = Intent(ConnectivityManager.CONNECTIVITY_ACTION)

@@ -16,10 +16,11 @@
 
 package org.freedombox.freedombox.View.Adapter
 
+import android.content.Context
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.card.view.appDescription
-import kotlinx.android.synthetic.main.card.view.appName
+import kotlinx.android.synthetic.main.app_container.view.appDescription
+import kotlinx.android.synthetic.main.app_container.view.appName
 import org.freedombox.freedombox.BuildConfig
 import org.freedombox.freedombox.Utils.ImageRenderer
 import org.freedombox.freedombox.Views.Adapter.GridAdapter
@@ -35,7 +36,7 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class)
 class GridAdapterTest {
-    val applicationContext = application.applicationContext
+    private val applicationContext: Context = application.applicationContext
     private val gridAdapter = GridAdapter(applicationContext, imageRenderer = ImageRenderer(applicationContext))
     private var jsonArray = JsonArray()
     private val jsonObject = JsonParser().parse("""
@@ -59,19 +60,23 @@ class GridAdapterTest {
     @Test
     fun testItemCount() {
         gridAdapter.setData(jsonArray)
+
         assertEquals(gridAdapter.count, 1)
     }
 
     @Test
     fun testGetItemAtPosition() {
         gridAdapter.setData(jsonArray)
+
         assertEquals(gridAdapter.getItem(0), jsonObject)
     }
 
     @Test
     fun testViewIsGettingPopulated() {
         gridAdapter.setData(jsonArray)
+
         val view = gridAdapter.getView(0, null, null)
+
         assertEquals(view.appName.text.toString(), "conversations")
         assertEquals(view.appDescription.text.toString(), "someDescription")
     }

@@ -21,16 +21,14 @@ import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.resource.SimpleResource
 import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGParseException
-import java.io.IOException
 import java.io.InputStream
 
-public class SvgDecoder : ResourceDecoder<InputStream, SVG> {
+class SvgDecoder : ResourceDecoder<InputStream, SVG> {
 
     override fun decode(source: InputStream?, width: Int, height: Int) = try {
-        val svg = SVG.getFromInputStream(source)
-        SimpleResource<SVG>(svg)
+        SimpleResource<SVG>(SVG.getFromInputStream(source))
     } catch (e: SVGParseException) {
-        throw IOException("Cannot load SVG")
+        null
     }
 
     override fun getId() = "org.freedombox.freedombox.svg"

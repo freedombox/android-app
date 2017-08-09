@@ -23,7 +23,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONObject
 
-
 fun getFBXApps(requestQueue: RequestQueue, uri: String, onSuccess:(JSONObject) -> Unit,
                onFailure: () -> Unit) {
     val jsonObjectResponse = JsonObjectRequest(
@@ -39,5 +38,3 @@ fun getFBXApps(requestQueue: RequestQueue, uri: String, onSuccess:(JSONObject) -
     )
     requestQueue.add(jsonObjectResponse)
 }
-
-

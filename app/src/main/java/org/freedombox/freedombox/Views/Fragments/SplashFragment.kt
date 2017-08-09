@@ -20,7 +20,6 @@ package org.freedombox.freedombox.Views.Fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.R
@@ -36,7 +35,6 @@ class SplashFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         btnSplashNext.setOnClickListener {
-            Toast.makeText(activity, "Clicked", Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, LauncherActivity::class.java)
             startActivity(intent)
         }

@@ -35,5 +35,4 @@ interface AppComponent {
     fun inject(splashFragment: SplashFragment)
 
     fun inject(launcherFragment: LauncherFragment)
-
 }

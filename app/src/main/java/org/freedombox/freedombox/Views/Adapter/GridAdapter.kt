@@ -25,25 +25,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.gson.JsonArray
-import kotlinx.android.synthetic.main.card.view.appDescription
-import kotlinx.android.synthetic.main.card.view.appIcon
-import kotlinx.android.synthetic.main.card.view.appName
-import kotlinx.android.synthetic.main.card.view.cardHolder
+import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.app_container.view.appDescription
+import kotlinx.android.synthetic.main.app_container.view.appIcon
+import kotlinx.android.synthetic.main.app_container.view.appName
+import kotlinx.android.synthetic.main.app_container.view.cardHolder
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.Utils.ImageRenderer
 import java.util.Locale
 
-class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAdapter() {
+class GridAdapter(val context: Context, val imageRenderer: ImageRenderer) : BaseAdapter() {
 
     private var items = JsonArray()
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val inflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val rowView = inflater.inflate(R.layout.card, null)
-
+        val rowView = inflater.inflate(R.layout.app_container, null)
         val appDetail = items[position].asJsonObject
-
         val locale = Locale.getDefault()
+
         rowView.appName.text = appDetail["label"]
                 .asJsonObject[locale.language]
                 .asString
@@ -51,7 +52,7 @@ class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAd
                 .asJsonObject[locale.language]
                 .asString
 
-        imageRenderer.laodIamgeFromURL(
+        imageRenderer.loadImageFromURL(
                 Uri.parse(appDetail["icon"].asString),
                 rowView.appIcon
         )
@@ -63,14 +64,15 @@ class GridAdapter(val context: Context,val imageRenderer: ImageRenderer): BaseAd
         return rowView
     }
 
-    override fun getItem(position: Int) = items[position].asJsonObject
+    override fun getItem(position: Int): JsonObject = items[position].asJsonObject
 
-    override fun getItemId(position: Int)= items[position].hashCode().toLong()
+    override fun getItemId(position: Int) = items[position].hashCode().toLong()
 
     override fun getCount() = items.size()
 
     fun setData(jsonArray: JsonArray) {
         items = jsonArray
+
         notifyDataSetChanged()
     }
 }

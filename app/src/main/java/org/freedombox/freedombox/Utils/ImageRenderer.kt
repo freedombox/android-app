@@ -33,21 +33,19 @@ import org.freedombox.freedombox.SVGModules.SvgDrawableTranscoder
 import java.io.InputStream
 
 class ImageRenderer(context: Context) {
-    val requestBuilder: GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable> =
-            Glide.with(context)
-                    .using(
-                            Glide.buildStreamModelLoader(Uri::class.java, context),
-                            InputStream::class.java)
-                    .from(Uri::class.java)
-                    .`as`(SVG::class.java)
-                    .transcode(SvgDrawableTranscoder(), PictureDrawable::class.java)
-                    .sourceEncoder(StreamEncoder())
-                    .cacheDecoder(FileToStreamDecoder<SVG>(SvgDecoder()))
-                    .decoder(SvgDecoder())
-                    .dontAnimate()
-                    .error(R.drawable.ic_logo)
+    val requestBuilder: GenericRequestBuilder<Uri, InputStream, SVG, PictureDrawable> = Glide
+            .with(context)
+            .using(Glide.buildStreamModelLoader(Uri::class.java, context), InputStream::class.java)
+            .from(Uri::class.java)
+            .`as`(SVG::class.java)
+            .transcode(SvgDrawableTranscoder(), PictureDrawable::class.java)
+            .sourceEncoder(StreamEncoder())
+            .cacheDecoder(FileToStreamDecoder<SVG>(SvgDecoder()))
+            .decoder(SvgDecoder())
+            .dontAnimate()
+            .error(R.drawable.ic_logo)
 
-    fun laodIamgeFromURL(url: Uri, imageView: ImageView) {
+    fun loadImageFromURL(url: Uri, imageView: ImageView) {
         requestBuilder
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .load(url)

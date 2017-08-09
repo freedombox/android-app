@@ -18,17 +18,26 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/appsNotAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/msg_apps_not_available"
+        android:textAlignment="center"
+        android:visibility="gone"/>
 
     <GridView
         android:id="@+id/appGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="auto_fit"
         android:layout_margin="@dimen/activity_vertical_margin"
-        android:verticalSpacing="@dimen/activity_vertical_margin"
-        android:horizontalSpacing="@dimen/activity_vertical_margin">
-    </GridView>
+        android:horizontalSpacing="@dimen/activity_vertical_margin"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="@dimen/activity_vertical_margin"/>
 
 </RelativeLayout>
