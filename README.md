@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/freedombox/android-app.svg?branch=master)](https://travis-ci.org/freedombox/android-app)
+
 # FreedomBox Android App
 App to access FreedomBox services from Android devices
 

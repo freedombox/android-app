@@ -1,5 +1,5 @@
 /**
- * This file is part of FreedomBox.
+ *  This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +15,8 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox.Views
+package org.freedombox.freedombox
 
-import android.support.design.widget.Snackbar
-
-interface IBaseView {
-    fun showSnackMessage(message: String, duration: Int = Snackbar.LENGTH_SHORT)
-}
+const val DEFAULT_IP = "http://10.42.0.1"
+const val SERVICES_URL = "services.json"
+const val APP_RESPONSE = "appResponse"

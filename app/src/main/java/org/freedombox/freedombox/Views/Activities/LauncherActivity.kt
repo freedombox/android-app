@@ -15,27 +15,17 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox.Components
+package org.freedombox.freedombox.Views.Activities
 
-import dagger.Component
-import org.freedombox.freedombox.Applications.FreedomBoxApp
-import org.freedombox.freedombox.Modules.AppModule
-import org.freedombox.freedombox.Views.Fragments.BaseFragment
+import android.os.Bundle
+import org.freedombox.freedombox.R
 import org.freedombox.freedombox.Views.Fragments.LauncherFragment
-import org.freedombox.freedombox.Views.Fragments.DiscoveryFragment
 import org.freedombox.freedombox.Views.Fragments.SplashFragment
-import javax.inject.Singleton
 
-@Singleton
-@Component(modules = arrayOf(AppModule::class))
-interface AppComponent {
-    fun inject(application: FreedomBoxApp)
+class LauncherActivity : BaseActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    fun inject(baseFragment: BaseFragment)
-
-    fun inject(splashFragment: SplashFragment)
-
-    fun inject(launcherFragment: LauncherFragment)
-
-    fun inject(discoveryFragment: DiscoveryFragment)
+        loadFragment(R.id.rootLayout, LauncherFragment.new(savedInstanceState ?: Bundle()))
+    }
 }

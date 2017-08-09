@@ -20,17 +20,14 @@ package org.freedombox.freedombox.Views.Fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
 import org.freedombox.freedombox.Components.AppComponent
 import org.freedombox.freedombox.R
-import org.freedombox.freedombox.Utils.Connectivity.ConnectivityMonitor
-import org.freedombox.freedombox.Views.Activities.DiscoveryActivity
+import org.freedombox.freedombox.Views.Activities.LauncherActivity
 import javax.inject.Inject
 
 class SplashFragment : BaseFragment() {
     @Inject lateinit var sharedPreferences: SharedPreferences
-
-    @Inject lateinit var connectivityMonitor: ConnectivityMonitor
 
     override fun getLayoutId() = R.layout.fragment_splash
 
@@ -38,7 +35,7 @@ class SplashFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         btnSplashNext.setOnClickListener {
-            val intent = Intent(activity, DiscoveryActivity::class.java)
+            val intent = Intent(activity, LauncherActivity::class.java)
             startActivity(intent)
         }
     }

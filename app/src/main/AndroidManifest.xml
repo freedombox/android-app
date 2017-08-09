@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Views.Activities.LauncherActivity">
+        </activity>
+
         <activity android:name=".Views.Activities.DiscoveryActivity" />
 
     </application>

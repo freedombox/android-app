@@ -1,5 +1,5 @@
 /**
- * This file is part of FreedomBox.
+ *  This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +15,21 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox.Views
+package org.freedombox.freedombox.SVGModules
 
-import android.support.design.widget.Snackbar
+import com.bumptech.glide.load.ResourceDecoder
+import com.bumptech.glide.load.resource.SimpleResource
+import com.caverock.androidsvg.SVG
+import com.caverock.androidsvg.SVGParseException
+import java.io.InputStream
 
-interface IBaseView {
-    fun showSnackMessage(message: String, duration: Int = Snackbar.LENGTH_SHORT)
+class SvgDecoder : ResourceDecoder<InputStream, SVG> {
+
+    override fun decode(source: InputStream?, width: Int, height: Int) = try {
+        SimpleResource<SVG>(SVG.getFromInputStream(source))
+    } catch (e: SVGParseException) {
+        null
+    }
+
+    override fun getId() = "org.freedombox.freedombox.svg"
 }
