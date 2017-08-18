@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 buildscript {
     ext {
-        kotlin_version = '1.1.3-2'
+        kotlin_version = '1.1.4-2'
         dagger_version = '2.11'
         robolectric_version = '3.3.2'
         supportlib_version = '25.3.1'

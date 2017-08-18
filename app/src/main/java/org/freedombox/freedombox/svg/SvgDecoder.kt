@@ -1,5 +1,5 @@
 /*
- * This file is part of FreedomBox.
+ *  This file is part of FreedomBox.
  *
  * FreedomBox is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +15,21 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox
+package org.freedombox.freedombox.svg
 
-const val DEFAULT_IP = "http://10.42.0.1"
-const val SERVICES_URL = "services.json"
-const val APP_RESPONSE = "appResponse"
+import com.bumptech.glide.load.ResourceDecoder
+import com.bumptech.glide.load.resource.SimpleResource
+import com.caverock.androidsvg.SVG
+import com.caverock.androidsvg.SVGParseException
+import java.io.InputStream
+
+class SvgDecoder : ResourceDecoder<InputStream, SVG> {
+
+    override fun decode(source: InputStream?, width: Int, height: Int) = try {
+        SimpleResource<SVG>(SVG.getFromInputStream(source))
+    } catch (e: SVGParseException) {
+        null
+    }
+
+    override fun getId() = "org.freedombox.freedombox.svg"
+}

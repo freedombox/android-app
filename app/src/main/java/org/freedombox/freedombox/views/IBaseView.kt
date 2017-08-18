@@ -15,8 +15,10 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox
+package org.freedombox.freedombox.views
 
-const val DEFAULT_IP = "http://10.42.0.1"
-const val SERVICES_URL = "services.json"
-const val APP_RESPONSE = "appResponse"
+import android.support.design.widget.Snackbar
+
+interface IBaseView {
+    fun showSnackMessage(message: String, duration: Int = Snackbar.LENGTH_SHORT)
+}

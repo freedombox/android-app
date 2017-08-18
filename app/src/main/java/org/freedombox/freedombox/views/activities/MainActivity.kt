@@ -15,8 +15,16 @@
  * along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.freedombox.freedombox
+package org.freedombox.freedombox.views.activities
 
-const val DEFAULT_IP = "http://10.42.0.1"
-const val SERVICES_URL = "services.json"
-const val APP_RESPONSE = "appResponse"
+import android.os.Bundle
+import org.freedombox.freedombox.R
+import org.freedombox.freedombox.views.fragments.SplashFragment
+
+class MainActivity : BaseActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        loadFragment(R.id.rootLayout, SplashFragment.new(savedInstanceState ?: Bundle()))
+    }
+}
