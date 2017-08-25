@@ -5,4 +5,10 @@
     <string name="msg_apps_not_available">Apps are not available. Please check network.</string>
     <string name="discovered">Discovered</string>
     <string name="servers">Servers</string>
+    <string name="box_name">Box Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="switch_title">Set as default</string>
+    <string name="save">Save</string>
+    <string name="setup">Setup</string>
 </resources>

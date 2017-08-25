@@ -18,6 +18,7 @@
 package org.freedombox.freedombox.views.fragments
 
 import android.content.Context.NSD_SERVICE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
@@ -26,6 +27,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.fragment_discovery.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
+import org.freedombox.freedombox.views.activities.SetupActivity
 import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
 import javax.inject.Inject
 
@@ -57,6 +59,11 @@ class DiscoveryFragment : BaseFragment() {
 
         adapter = DiscoveryListAdapter(activity.applicationContext, boxList, portList)
         listView.adapter = adapter
+
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(activity, SetupActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {
