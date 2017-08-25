@@ -24,7 +24,7 @@ import org.freedombox.freedombox.views.fragments.DiscoveryFragment
 class DiscoveryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        supportActionBar?.title = getString(R.string.servers)
         loadFragment(R.id.rootLayout, DiscoveryFragment.new(savedInstanceState ?: Bundle()))
     }
 }
