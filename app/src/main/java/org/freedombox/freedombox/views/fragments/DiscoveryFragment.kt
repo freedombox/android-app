@@ -23,12 +23,20 @@ import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.fragment_discovery.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
+import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
 import javax.inject.Inject
 
 class DiscoveryFragment : BaseFragment() {
     val TAG = "DISCOVERY_FRAGMENT"
+
+    lateinit var adapter: DiscoveryListAdapter
+
+    var boxList: ArrayList<String> = ArrayList<String>()
+
+    var portList: ArrayList<String> = ArrayList<String>()
 
     private val SERVICE = "_freedombox._tcp"
 
@@ -46,6 +54,9 @@ class DiscoveryFragment : BaseFragment() {
         discoveryListener = FBXDiscoveryListener()
 
         nsdManager.discoverServices(SERVICE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
+
+        adapter = DiscoveryListAdapter(activity.applicationContext, boxList, portList)
+        listView.adapter = adapter
     }
 
     companion object {
@@ -77,6 +88,15 @@ class DiscoveryFragment : BaseFragment() {
 
             Log.d(TAG, serviceInfo.port.toString())
             Log.d(TAG, serviceInfo.host.toString())
+
+            boxList.add(serviceInfo.host.toString())
+            portList.add(serviceInfo.port.toString())
+
+            activity.runOnUiThread {
+                adapter.notifyDataSetChanged();
+                Log.i(TAG, "runOnUiThread")
+            }
+
         }
     }
 
@@ -84,13 +104,13 @@ class DiscoveryFragment : BaseFragment() {
         override fun onServiceFound(serviceInfo: NsdServiceInfo) {
             Log.d(TAG, serviceInfo.serviceType)
             Log.d(TAG, serviceInfo.serviceName)
-
+            boxList.clear()
+            portList.clear()
             nsdManager.resolveService(serviceInfo, FBXResolveListener())
         }
 
         override fun onStopDiscoveryFailed(serviceType: String, errorCode: Int) {
             Log.e(TAG, "Discovery failed: Error code:" + errorCode)
-
             nsdManager.stopServiceDiscovery(this)
         }
 

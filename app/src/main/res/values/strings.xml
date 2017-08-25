@@ -3,4 +3,5 @@
     <string name="desc_splash_logo">Splash Logo</string>
     <string name="desc_navigate_next">Navigate Next</string>
     <string name="msg_apps_not_available">Apps are not available. Please check network.</string>
+    <string name="discovered">Discovered</string>
 </resources>

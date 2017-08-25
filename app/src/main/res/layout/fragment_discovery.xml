@@ -18,15 +18,21 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imgFbxLogo"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
-        android:layout_centerInParent="true"
-        android:contentDescription="@string/desc_splash_logo"
-        android:src="@drawable/logo_800px" />
+  <TextView
+    android:id="@+id/discovered"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blueGrey"
+    android:text="@string/discovered"/>
+
+  <ListView
+    android:id="@+id/listView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/discovered"/>
+
 </RelativeLayout>
