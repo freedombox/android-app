@@ -26,27 +26,31 @@
     android:id="@+id/boxname"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="@string/box_name"/>
+    android:hint="@string/box_name"
+    android:textColor="@drawable/selector_txt"/>
 
   <EditText
     android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/boxname"
-    android:hint="@string/username"/>
+    android:hint="@string/username"
+    android:textColor="@drawable/selector_txt"/>
 
   <EditText
     android:id="@+id/password"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/username"
-    android:hint="@string/password"/>
+    android:hint="@string/password"
+    android:textColor="@drawable/selector_txt"/>
 
   <EditText
     android:id="@+id/discoveredUrl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/password"/>
+    android:layout_below="@+id/password"
+    android:textColor="@drawable/selector_txt"/>
 
   <Switch
     android:id="@+id/setDefault"
