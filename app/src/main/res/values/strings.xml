@@ -11,4 +11,5 @@
     <string name="switch_title">Set as default</string>
     <string name="save">Save</string>
     <string name="setup">Setup</string>
+    <string name="current_box" translatable="false">current_box</string>
 </resources>

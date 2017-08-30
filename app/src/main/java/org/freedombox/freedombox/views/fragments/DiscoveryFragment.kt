@@ -62,6 +62,7 @@ class DiscoveryFragment : BaseFragment() {
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(activity, LauncherActivity::class.java)
+            intent.putExtra(getString(R.string.current_box), boxList.get(position))
             startActivity(intent)
         }
     }

@@ -51,7 +51,9 @@ class LauncherFragment : BaseFragment() {
         appGrid.adapter = adapter
 
         fab.setOnClickListener {
+            val currentBoxName = activity.intent.getStringExtra(getString(R.string.current_box))
             val intent = Intent(activity, SetupActivity::class.java)
+            intent.putExtra(getString(R.string.current_box), currentBoxName)
             startActivity(intent)
         }
 

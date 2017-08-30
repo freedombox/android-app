@@ -2,6 +2,7 @@ package org.freedombox.freedombox.views.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import kotlinx.android.synthetic.main.fragment_setup.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import javax.inject.Inject
@@ -14,6 +15,9 @@ class SetupFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val currentBoxName = activity.intent.getStringExtra(getString(R.string.current_box))
+        discoveredUrl.setText(currentBoxName)
 
     }
 
