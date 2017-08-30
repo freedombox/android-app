@@ -16,9 +16,13 @@
 ~ You should have received a copy of the GNU General Public License
 ~ along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
 -->
+<android.support.design.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -40,4 +44,13 @@
         android:numColumns="auto_fit"
         android:verticalSpacing="@dimen/activity_vertical_margin"/>
 
-</RelativeLayout>
+
+  </RelativeLayout>
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_margin="16dp"/>
+</android.support.design.widget.CoordinatorLayout>

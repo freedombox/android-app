@@ -27,7 +27,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.fragment_discovery.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
-import org.freedombox.freedombox.views.activities.SetupActivity
+import org.freedombox.freedombox.views.activities.LauncherActivity
 import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
 import javax.inject.Inject
 
@@ -61,7 +61,7 @@ class DiscoveryFragment : BaseFragment() {
         listView.adapter = adapter
 
         listView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(activity, SetupActivity::class.java)
+            val intent = Intent(activity, LauncherActivity::class.java)
             startActivity(intent)
         }
     }
