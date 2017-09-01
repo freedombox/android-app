@@ -19,20 +19,48 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-  <TextView
-    android:id="@+id/discovered"
+  <RelativeLayout
+    android:id="@+id/configuredGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/blueGrey"
-    android:text="@string/discovered"/>
+    android:visibility="gone">
 
-  <ListView
-    android:id="@+id/listView"
+    <TextView
+      android:id="@+id/configured"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/blueGrey"
+      android:text="@string/configured"/>
+
+    <ListView
+      android:id="@+id/configuredListView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/configured"/>
+
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/discoveredGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/discovered"/>
+    android:layout_below="@+id/configuredGroup">
+
+    <TextView
+      android:id="@+id/discovered"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/blueGrey"
+      android:text="@string/discovered"/>
+
+    <ListView
+      android:id="@+id/discoveredListView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/discovered"/>
+
+  </RelativeLayout>
 
 </RelativeLayout>
