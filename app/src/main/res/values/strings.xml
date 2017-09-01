@@ -12,4 +12,5 @@
     <string name="save">Save</string>
     <string name="setup">Setup</string>
     <string name="current_box" translatable="false">current_box</string>
+    <string name="default_box" translatable="false">default_box</string>
 </resources>

@@ -20,10 +20,15 @@ package org.freedombox.freedombox.views.fragments
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
+import android.preference.PreferenceManager
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.fragment_splash.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.views.activities.DiscoveryActivity
+import org.freedombox.freedombox.views.activities.LauncherActivity
+import org.freedombox.freedombox.views.model.ConfigModel
 import javax.inject.Inject
 
 class SplashFragment : BaseFragment() {
@@ -34,8 +39,25 @@ class SplashFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        openLauncherIfConfigured()
+
         btnSplashNext.setOnClickListener {
             val intent = Intent(activity, DiscoveryActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun openLauncherIfConfigured() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        var configuredBoxesJSON = sharedPreferences.getString(getString(R.string.default_box), null)
+
+        if (configuredBoxesJSON != null) {
+            val gson = GsonBuilder().setPrettyPrinting().create()
+            val configuredBoxList: ArrayList<ConfigModel> = gson.fromJson(configuredBoxesJSON
+                    , object : TypeToken<List<ConfigModel>>() {}.type)
+            val intent = Intent(activity, LauncherActivity::class.java)
+
+            intent.putParcelableArrayListExtra(getString(R.string.current_box), configuredBoxList)
             startActivity(intent)
         }
     }

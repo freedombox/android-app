@@ -32,6 +32,7 @@ import org.freedombox.freedombox.utils.ImageRenderer
 import org.freedombox.freedombox.utils.network.getFBXApps
 import org.freedombox.freedombox.views.activities.SetupActivity
 import org.freedombox.freedombox.views.adapter.GridAdapter
+import org.freedombox.freedombox.views.model.ConfigModel
 import org.json.JSONObject
 import javax.inject.Inject
 
@@ -49,6 +50,10 @@ class LauncherFragment : BaseFragment() {
         val adapter = GridAdapter(activity.applicationContext, imageRenderer)
 
         appGrid.adapter = adapter
+
+
+        var configuredBoxList: ArrayList<ConfigModel> = activity.intent
+                .getParcelableArrayListExtra<ConfigModel>(getString(R.string.current_box))
 
         fab.setOnClickListener {
             val currentBoxName = activity.intent.getStringExtra(getString(R.string.current_box))
