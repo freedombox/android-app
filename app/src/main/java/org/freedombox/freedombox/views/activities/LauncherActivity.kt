@@ -17,7 +17,10 @@
 
 package org.freedombox.freedombox.views.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.views.fragments.LauncherFragment
 
@@ -26,5 +29,16 @@ class LauncherActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         loadFragment(R.id.rootLayout, LauncherFragment.new(savedInstanceState ?: Bundle()))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_discovery, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val intent = Intent(this, DiscoveryActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 }

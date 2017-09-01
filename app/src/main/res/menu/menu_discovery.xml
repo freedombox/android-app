@@ -4,6 +4,6 @@
       tools:context="com.saikailas.ooty.organization.ArticleDetailActivity">
   <item
     android:id="@+id/action_settings"
-    android:orderInCategory="100"
-    app:showAsAction="never"/>
+    android:icon="@drawable/ic_logo"
+    app:showAsAction="always"/>
 </menu>
