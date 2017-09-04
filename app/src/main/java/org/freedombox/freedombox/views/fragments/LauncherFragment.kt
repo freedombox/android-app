@@ -54,7 +54,7 @@ class LauncherFragment : BaseFragment() {
         appGrid.adapter = adapter
 
 
-        var configuredBoxList: ArrayList<ConfigModel>? = activity.intent
+        val configuredBoxList: ArrayList<ConfigModel>? = activity.intent
                 .getParcelableArrayListExtra<ConfigModel>(getString(R.string.current_box))
 
         fab.setOnClickListener {

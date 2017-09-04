@@ -43,13 +43,13 @@ class DiscoveryFragment : BaseFragment() {
 
     lateinit var adapter: DiscoveryListAdapter
 
-    var discoveredBoxList: ArrayList<String> = ArrayList<String>()
-    var configuredBoxList: ArrayList<String> = ArrayList<String>()
+    val discoveredBoxList = mutableListOf<String>()
+    val configuredBoxList = mutableListOf<String>()
 
-    var disoveredPortList: ArrayList<String> = ArrayList<String>()
-    var configuredPortList: ArrayList<String> = ArrayList<String>()
+    val disoveredPortList = mutableListOf<String>()
+    val configuredPortList = mutableListOf<String>()
 
-    var configuredBoxSetupList: ArrayList<ConfigModel> = ArrayList<ConfigModel>()
+    var configuredBoxSetupList = mutableListOf<ConfigModel>()
 
     private val SERVICE = "_freedombox._tcp"
 

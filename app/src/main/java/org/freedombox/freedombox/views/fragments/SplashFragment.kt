@@ -49,7 +49,7 @@ class SplashFragment : BaseFragment() {
 
     fun openLauncherIfConfigured() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        var configuredBoxesJSON = sharedPreferences.getString(getString(R.string.default_box), null)
+        val configuredBoxesJSON = sharedPreferences.getString(getString(R.string.default_box), null)
 
         if (configuredBoxesJSON != null) {
             val gson = GsonBuilder().setPrettyPrinting().create()

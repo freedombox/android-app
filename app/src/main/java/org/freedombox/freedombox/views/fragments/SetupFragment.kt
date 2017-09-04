@@ -24,7 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_setup.saveConfig
-import kotlinx.android.synthetic.main.fragment_setup.boxname
+import kotlinx.android.synthetic.main.fragment_setup.boxName
 import kotlinx.android.synthetic.main.fragment_setup.setDefault
 import kotlinx.android.synthetic.main.fragment_setup.password
 import kotlinx.android.synthetic.main.fragment_setup.username
@@ -56,18 +56,18 @@ class SetupFragment : BaseFragment() {
 
     fun getEnteredDetailsAndStoreInPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        var configuredBoxesJSON = sharedPreferences.getString(
+        val configuredBoxesJSON = sharedPreferences.getString(
                 getString(R.string.default_box)
                 , null)
 
-        val boxName = boxname.editableText.toString()
+        val boxName = boxName.editableText.toString()
         val domain = discoveredUrl.editableText.toString()
         val username = username.editableText.toString()
         val password = password.editableText.toString()
         val default = setDefault.isChecked
         val configModel = ConfigModel(boxName, domain, username, password, default)
 
-        var configuredBoxList = ArrayList<ConfigModel>()
+        var configuredBoxList = mutableListOf<ConfigModel>()
         if (configuredBoxesJSON != null) {
             val gson = GsonBuilder().setPrettyPrinting().create()
             configuredBoxList = gson.fromJson(configuredBoxesJSON

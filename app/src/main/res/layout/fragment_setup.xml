@@ -23,7 +23,7 @@
                 android:orientation="vertical">
 
   <EditText
-    android:id="@+id/boxname"
+    android:id="@+id/boxName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="@string/box_name"
@@ -40,7 +40,7 @@
     android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/boxname"
+    android:layout_below="@+id/boxName"
     android:hint="@string/username"
     android:textColor="@drawable/selector_txt"/>
 

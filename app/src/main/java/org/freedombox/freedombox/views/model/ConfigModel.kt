@@ -20,11 +20,11 @@ package org.freedombox.freedombox.views.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class ConfigModel( var boxName: String,
-                        var domain: String,
-                        var username: String,
-                        var password: String,
-                        var default: Boolean): Parcelable{
+data class ConfigModel( val boxName: String,
+                        val domain: String,
+                        val username: String,
+                        val password: String,
+                        val default: Boolean): Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),

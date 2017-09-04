@@ -26,8 +26,8 @@ import android.widget.TextView
 import org.freedombox.freedombox.R
 
 class DiscoveryListAdapter(val context: Context,
-                           val boxNameList: ArrayList<String>,
-                           val portList: ArrayList<String>) : BaseAdapter() {
+                           val boxNameList: List<String>,
+                           val portList: List<String>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var inflaterView = convertView
@@ -36,7 +36,7 @@ class DiscoveryListAdapter(val context: Context,
                     as LayoutInflater
             inflaterView = inflater.inflate(R.layout.discovery_listview, null)
         }
-        val boxName = inflaterView?.findViewById(R.id.boxname) as TextView
+        val boxName = inflaterView?.findViewById(R.id.boxName) as TextView
         val port = inflaterView.findViewById(R.id.port) as TextView
         boxName.text = boxNameList[position]
         port.text = portList[position]
