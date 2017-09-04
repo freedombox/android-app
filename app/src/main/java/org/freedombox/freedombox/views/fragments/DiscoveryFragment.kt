@@ -23,6 +23,7 @@ import android.content.SharedPreferences
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import com.google.gson.GsonBuilder
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.fragment_discovery.configuredListView
 import kotlinx.android.synthetic.main.fragment_discovery.discoveredListView
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
+import org.freedombox.freedombox.utils.storage.getSharedPreference
 import org.freedombox.freedombox.views.activities.LauncherActivity
 import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
 import org.freedombox.freedombox.views.model.ConfigModel
@@ -43,12 +45,12 @@ class DiscoveryFragment : BaseFragment() {
     lateinit var adapter: DiscoveryListAdapter
 
     val discoveredBoxList = mutableListOf<String>()
-    val configuredBoxList = mutableListOf<String>()
+    var configuredBoxList = listOf<String>()
 
     val disoveredPortList = mutableListOf<String>()
-    val configuredPortList = mutableListOf<String>()
+    var configuredPortList = listOf<String>()
 
-    var configuredBoxSetupList = mutableListOf<ConfigModel>()
+    var configuredBoxSetupList = listOf<ConfigModel>()
 
     private val SERVICE = "_freedombox._tcp"
 
@@ -67,18 +69,19 @@ class DiscoveryFragment : BaseFragment() {
 
         nsdManager.discoverServices(SERVICE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
 
-        var configuredBoxesJSON = sharedPreferences.
-                getString(getString(R.string.default_box), null)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val configuredBoxesJSON = getSharedPreference(sharedPreferences,
+                getString(R.string.default_box))
 
 
-        if (configuredBoxesJSON != null) {
+        configuredBoxesJSON?.let {
             val gson = GsonBuilder().setPrettyPrinting().create()
-            configuredBoxSetupList = gson.
-                    fromJson(configuredBoxesJSON,
+            configuredBoxSetupList += gson.
+                    fromJson<List<ConfigModel>>(configuredBoxesJSON,
                             object : TypeToken<List<ConfigModel>>() {}.type)
             for (configModel in configuredBoxSetupList) {
-                configuredBoxList.add(configModel.domain)
-                configuredPortList.add("80")
+                configuredBoxList += configModel.domain
+                configuredPortList += "80"
             }
 
             configuredGroup.visibility = View.VISIBLE
