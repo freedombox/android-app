@@ -23,7 +23,12 @@ import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.fragment_setup.*
+import kotlinx.android.synthetic.main.fragment_setup.saveConfig
+import kotlinx.android.synthetic.main.fragment_setup.boxname
+import kotlinx.android.synthetic.main.fragment_setup.setDefault
+import kotlinx.android.synthetic.main.fragment_setup.password
+import kotlinx.android.synthetic.main.fragment_setup.username
+import kotlinx.android.synthetic.main.fragment_setup.discoveredUrl
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.views.model.ConfigModel

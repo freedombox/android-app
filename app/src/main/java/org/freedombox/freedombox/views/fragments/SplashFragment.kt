@@ -23,7 +23,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.android.synthetic.main.fragment_splash.btnSplashNext
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.views.activities.DiscoveryActivity

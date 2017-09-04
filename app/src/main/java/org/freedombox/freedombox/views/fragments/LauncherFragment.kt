@@ -22,7 +22,9 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.fragment_launcher.*
+import kotlinx.android.synthetic.main.fragment_launcher.appGrid
+import kotlinx.android.synthetic.main.fragment_launcher.appsNotAvailable
+import kotlinx.android.synthetic.main.fragment_launcher.fab
 import org.freedombox.freedombox.APP_RESPONSE
 import org.freedombox.freedombox.DEFAULT_IP
 import org.freedombox.freedombox.R
