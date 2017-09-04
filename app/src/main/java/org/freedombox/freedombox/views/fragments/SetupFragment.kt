@@ -19,7 +19,6 @@ package org.freedombox.freedombox.views.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -55,7 +54,6 @@ class SetupFragment : BaseFragment() {
     }
 
     fun getEnteredDetailsAndStoreInPreferences() {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val configuredBoxesJSON = sharedPreferences.getString(
                 getString(R.string.default_box)
                 , null)

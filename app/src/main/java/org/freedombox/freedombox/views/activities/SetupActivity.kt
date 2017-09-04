@@ -19,7 +19,6 @@ package org.freedombox.freedombox.views.activities
 
 import android.os.Bundle
 import org.freedombox.freedombox.R
-import org.freedombox.freedombox.views.fragments.DiscoveryFragment
 import org.freedombox.freedombox.views.fragments.SetupFragment
 
 class SetupActivity : BaseActivity() {
