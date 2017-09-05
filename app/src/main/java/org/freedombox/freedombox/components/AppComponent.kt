@@ -24,6 +24,7 @@ import org.freedombox.freedombox.views.fragments.BaseFragment
 import org.freedombox.freedombox.views.fragments.DiscoveryFragment
 import org.freedombox.freedombox.views.fragments.LauncherFragment
 import org.freedombox.freedombox.views.fragments.SplashFragment
+import org.freedombox.freedombox.views.fragments.SetupFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -38,4 +39,6 @@ interface AppComponent {
     fun inject(launcherFragment: LauncherFragment)
 
     fun inject(discoveryFragment: DiscoveryFragment)
+
+    fun inject(setupFragment: SetupFragment)
 }
