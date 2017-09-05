@@ -145,7 +145,7 @@ class DiscoveryFragment : BaseFragment() {
             val portConfigured = configuredBoxSetupList?.filter {
                 it.domain.equals(serviceInfo.host.toString())
             }
-            if (portConfigured.size == 0) {
+            if (portConfigured.isEmpty()) {
                 discoveredBoxList.add(serviceInfo.host.toString())
                 disoveredPortList.add(serviceInfo.port.toString())
             }
