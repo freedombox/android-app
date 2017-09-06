@@ -23,7 +23,6 @@ import android.content.SharedPreferences
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import com.google.gson.GsonBuilder
@@ -69,7 +68,6 @@ class DiscoveryFragment : BaseFragment() {
 
         nsdManager.discoverServices(SERVICE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
                 getString(R.string.default_box))
 
