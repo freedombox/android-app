@@ -49,15 +49,13 @@ class SetupFragment : BaseFragment() {
         discoveredUrl.setText(currentBoxName)
 
         saveConfig.setOnClickListener {
-            getEnteredDetailsAndStoreInPreferences()
+            storeEnteredDetailsInPreference()
             activity.finish();
         }
 
     }
 
-    fun getEnteredDetailsAndStoreInPreferences() {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
+    fun storeEnteredDetailsInPreference() {
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
                 getString(R.string.default_box))
 
