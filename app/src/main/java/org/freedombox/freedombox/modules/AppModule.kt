@@ -22,8 +22,8 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
-import org.freedombox.freedombox.utils.network.ConnectivityMonitor
 import org.freedombox.freedombox.utils.ImageRenderer
+import org.freedombox.freedombox.utils.network.ConnectivityMonitor
 import javax.inject.Singleton
 
 @Module

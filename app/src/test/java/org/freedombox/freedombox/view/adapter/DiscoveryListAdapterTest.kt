@@ -27,19 +27,18 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class)
 class DiscoveryListAdapterTest {
 
     private val applicationContext: Context = RuntimeEnvironment.application.applicationContext
-    val boxNameList = mutableListOf<String>()
-    val portList = mutableListOf<String>()
+    private val boxNameList = mutableListOf<String>()
+    private val portList = mutableListOf<String>()
     private lateinit var listAdapter: DiscoveryListAdapter
-    val boxName1 = "box1"
-    val boxName2 = "box2"
-    val portName1 = "port1"
-    val portName2 = "port2"
+    private val boxName1 = "box1"
+    private val boxName2 = "box2"
+    private val portName1 = "port1"
+    private val portName2 = "port2"
 
     @Before
     fun setUp() {

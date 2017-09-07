@@ -25,6 +25,7 @@ class SetupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.title = getString(R.string.setup)
+
         loadFragment(R.id.rootLayout, SetupFragment.new(savedInstanceState ?: Bundle()))
     }
 }

@@ -21,12 +21,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.fragment_setup.saveConfig
-import kotlinx.android.synthetic.main.fragment_setup.boxName
-import kotlinx.android.synthetic.main.fragment_setup.setDefault
-import kotlinx.android.synthetic.main.fragment_setup.password
-import kotlinx.android.synthetic.main.fragment_setup.username
-import kotlinx.android.synthetic.main.fragment_setup.discoveredUrl
+import kotlinx.android.synthetic.main.fragment_setup.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.utils.storage.getSharedPreference
@@ -37,7 +32,6 @@ import org.freedombox.freedombox.views.model.ConfigModel
 import javax.inject.Inject
 
 class SetupFragment : BaseFragment() {
-    val TAG = "SETUP_FRAGMENT"
 
     @Inject lateinit var sharedPreferences: SharedPreferences
 
@@ -49,30 +43,30 @@ class SetupFragment : BaseFragment() {
 
         saveConfig.setOnClickListener {
             storeEnteredDetailsInPreference()
-            activity.finish();
+            activity.finish()
         }
 
     }
 
-    fun storeEnteredDetailsInPreference() {
+    private fun storeEnteredDetailsInPreference() {
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
-                getString(R.string.default_box))
+            getString(R.string.default_box))
 
         val configModel = ConfigModel(
-                getEnteredText(boxName),
-                getEnteredText(discoveredUrl),
-                getEnteredText(username),
-                getEnteredText(password),
-                getSwitchStatus(setDefault))
+            getEnteredText(boxName),
+            getEnteredText(discoveredUrl),
+            getEnteredText(username),
+            getEnteredText(password),
+            getSwitchStatus(setDefault))
 
         val configuredBoxList = (configuredBoxesJSON?.let {
             val gson = GsonBuilder().setPrettyPrinting().create()
             gson.fromJson<List<ConfigModel>>(it, object : TypeToken<List<ConfigModel>>() {}.type)
-        } ?: listOf<ConfigModel>()).plus(configModel)
+        } ?: listOf()).plus(configModel)
 
         putSharedPreference(sharedPreferences,
-                getString(R.string.default_box),
-                configuredBoxList)
+            getString(R.string.default_box),
+            configuredBoxList)
     }
 
     override fun getLayoutId() = R.layout.fragment_setup

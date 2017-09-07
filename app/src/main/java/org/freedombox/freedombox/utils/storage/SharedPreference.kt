@@ -18,18 +18,17 @@
 package org.freedombox.freedombox.utils.storage
 
 import android.content.SharedPreferences
-import android.content.res.Resources
 import com.google.gson.Gson
 import org.freedombox.freedombox.views.model.ConfigModel
 
 fun getSharedPreference(sharedPreferences: SharedPreferences, key: String)
-        = sharedPreferences.getString(key, null)
+    = sharedPreferences.getString(key, null)
 
 fun putSharedPreference(sharedPreferences: SharedPreferences,
                         key: String,
                         listItem: List<ConfigModel>) {
     val sharedPreferencesEditor = sharedPreferences.edit()
     sharedPreferencesEditor.putString(key,
-            Gson().toJson(listItem))
+        Gson().toJson(listItem))
     sharedPreferencesEditor.apply()
 }

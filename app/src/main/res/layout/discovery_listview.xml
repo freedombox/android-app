@@ -22,29 +22,29 @@
               android:layout_height="match_parent"
               android:orientation="horizontal">
 
-  <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:src="@drawable/ic_logo"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_logo"/>
 
-  <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_weight="2"
-    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-    <TextView
-      android:id="@+id/boxName"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:textColor="@color/cardview_dark_background"/>
+        <TextView
+            android:id="@+id/boxName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/cardview_dark_background"/>
 
-    <TextView
-      android:id="@+id/port"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:textColor="@color/cardview_dark_background"/>
-  </LinearLayout>
+        <TextView
+            android:id="@+id/port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/cardview_dark_background"/>
+    </LinearLayout>
 </LinearLayout>

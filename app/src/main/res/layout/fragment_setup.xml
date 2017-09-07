@@ -22,48 +22,48 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-  <EditText
-    android:id="@+id/boxName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/box_name"
-    android:textColor="@drawable/selector_txt"/>
+    <EditText
+        android:id="@+id/boxName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/box_name"
+        android:textColor="@drawable/selector_txt"/>
 
-  <EditText
-    android:id="@+id/discoveredUrl"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/password"
-    android:textColor="@drawable/selector_txt"/>
+    <EditText
+        android:id="@+id/discoveredUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:textColor="@drawable/selector_txt"/>
 
-  <EditText
-    android:id="@+id/username"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/boxName"
-    android:hint="@string/username"
-    android:textColor="@drawable/selector_txt"/>
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/boxName"
+        android:hint="@string/username"
+        android:textColor="@drawable/selector_txt"/>
 
-  <EditText
-    android:id="@+id/password"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/username"
-    android:hint="@string/password"
-    android:textColor="@drawable/selector_txt"/>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:hint="@string/password"
+        android:textColor="@drawable/selector_txt"/>
 
-  <Switch
-    android:id="@+id/setDefault"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/discoveredUrl"
-    android:text="@string/switch_title"/>
+    <Switch
+        android:id="@+id/setDefault"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discoveredUrl"
+        android:text="@string/switch_title"/>
 
-  <Button
-    android:id="@+id/saveConfig"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/setDefault"
-    android:text="@string/save"/>
+    <Button
+        android:id="@+id/saveConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setDefault"
+        android:text="@string/save"/>
 
 </RelativeLayout>

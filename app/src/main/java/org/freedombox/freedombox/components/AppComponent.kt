@@ -23,8 +23,8 @@ import org.freedombox.freedombox.modules.AppModule
 import org.freedombox.freedombox.views.fragments.BaseFragment
 import org.freedombox.freedombox.views.fragments.DiscoveryFragment
 import org.freedombox.freedombox.views.fragments.LauncherFragment
-import org.freedombox.freedombox.views.fragments.SplashFragment
 import org.freedombox.freedombox.views.fragments.SetupFragment
+import org.freedombox.freedombox.views.fragments.SplashFragment
 import javax.inject.Singleton
 
 @Singleton

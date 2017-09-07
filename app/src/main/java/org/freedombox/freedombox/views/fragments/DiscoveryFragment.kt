@@ -44,10 +44,10 @@ class DiscoveryFragment : BaseFragment() {
     lateinit var adapter: DiscoveryListAdapter
 
     val discoveredBoxList = mutableListOf<String>()
-    var configuredBoxList = listOf<String>()
+    private var configuredBoxList = listOf<String>()
 
-    val disoveredPortList = mutableListOf<String>()
-    var configuredPortList = listOf<String>()
+    val discoveredPortList = mutableListOf<String>()
+    private var configuredPortList = listOf<String>()
 
     var configuredBoxSetupList = listOf<ConfigModel>()
 
@@ -69,14 +69,14 @@ class DiscoveryFragment : BaseFragment() {
         nsdManager.discoverServices(SERVICE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
 
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
-                getString(R.string.default_box))
+            getString(R.string.default_box))
 
 
         configuredBoxesJSON?.let {
             val gson = GsonBuilder().setPrettyPrinting().create()
             configuredBoxSetupList += gson.
-                    fromJson<List<ConfigModel>>(configuredBoxesJSON,
-                            object : TypeToken<List<ConfigModel>>() {}.type)
+                fromJson<List<ConfigModel>>(configuredBoxesJSON,
+                    object : TypeToken<List<ConfigModel>>() {}.type)
             for (configModel in configuredBoxSetupList) {
                 configuredBoxList += configModel.domain
                 configuredPortList += "80"
@@ -85,27 +85,27 @@ class DiscoveryFragment : BaseFragment() {
             configuredGroup.visibility = View.VISIBLE
 
             adapter = DiscoveryListAdapter(activity.applicationContext,
-                    configuredBoxList,
-                    configuredPortList)
+                configuredBoxList,
+                configuredPortList)
             configuredListView.adapter = adapter
 
-            configuredListView.setOnItemClickListener { parent, view, position, id ->
+            configuredListView.setOnItemClickListener { _, _, position, _ ->
                 val intent = Intent(activity, LauncherActivity::class.java)
-                intent.putExtra(getString(R.string.current_box), configuredBoxList.get(position))
+                intent.putExtra(getString(R.string.current_box), configuredBoxList[position])
                 startActivity(intent)
             }
 
         }
 
         adapter = DiscoveryListAdapter(activity.applicationContext,
-                discoveredBoxList,
-                disoveredPortList)
+            discoveredBoxList,
+            discoveredPortList)
         discoveredListView.adapter = adapter
 
-        discoveredListView.setOnItemClickListener { parent, view, position, id ->
+        discoveredListView.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(activity, LauncherActivity::class.java)
             intent.putExtra(getString(R.string.current_box),
-                    discoveredBoxList.get(position))
+                discoveredBoxList[position])
             startActivity(intent)
         }
     }
@@ -140,15 +140,15 @@ class DiscoveryFragment : BaseFragment() {
             Log.d(TAG, serviceInfo.port.toString())
             Log.d(TAG, serviceInfo.host.toString())
 
-            val portConfigured = configuredBoxSetupList?.filter {
-                it.domain.equals(serviceInfo.host.toString())
+            val portConfigured = configuredBoxSetupList.filter {
+                it.domain == serviceInfo.host.toString()
             }
             if (portConfigured.isEmpty()) {
                 discoveredBoxList.add(serviceInfo.host.toString())
-                disoveredPortList.add(serviceInfo.port.toString())
+                discoveredPortList.add(serviceInfo.port.toString())
             }
             activity.runOnUiThread {
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged()
                 Log.i(TAG, "runOnUiThread")
             }
 
@@ -160,7 +160,7 @@ class DiscoveryFragment : BaseFragment() {
             Log.d(TAG, serviceInfo.serviceType)
             Log.d(TAG, serviceInfo.serviceName)
             discoveredBoxList.clear()
-            disoveredPortList.clear()
+            discoveredPortList.clear()
             nsdManager.resolveService(serviceInfo, FBXResolveListener())
         }
 

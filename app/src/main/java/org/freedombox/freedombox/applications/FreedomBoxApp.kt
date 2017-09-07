@@ -21,8 +21,8 @@ import android.app.Application
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.components.DaggerAppComponent
 import org.freedombox.freedombox.modules.AppModule
-import org.freedombox.freedombox.utils.network.ConnectivityMonitor
 import org.freedombox.freedombox.utils.ImageRenderer
+import org.freedombox.freedombox.utils.network.ConnectivityMonitor
 import javax.inject.Inject
 
 class FreedomBoxApp : Application() {

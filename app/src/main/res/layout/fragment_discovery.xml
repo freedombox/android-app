@@ -21,46 +21,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-  <RelativeLayout
-    android:id="@+id/configuredGroup"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:visibility="gone">
+    <RelativeLayout
+        android:id="@+id/configuredGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
-    <TextView
-      android:id="@+id/configured"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/blueGrey"
-      android:text="@string/configured"/>
+        <TextView
+            android:id="@+id/configured"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blueGrey"
+            android:text="@string/configured"/>
 
-    <ListView
-      android:id="@+id/configuredListView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/configured"/>
+        <ListView
+            android:id="@+id/configuredListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/configured"/>
 
-  </RelativeLayout>
+    </RelativeLayout>
 
-  <RelativeLayout
-    android:id="@+id/discoveredGroup"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/configuredGroup">
+    <RelativeLayout
+        android:id="@+id/discoveredGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/configuredGroup">
 
-    <TextView
-      android:id="@+id/discovered"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/blueGrey"
-      android:text="@string/discovered"/>
+        <TextView
+            android:id="@+id/discovered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blueGrey"
+            android:text="@string/discovered"/>
 
-    <ListView
-      android:id="@+id/discoveredListView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/discovered"/>
+        <ListView
+            android:id="@+id/discoveredListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/discovered"/>
 
-  </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

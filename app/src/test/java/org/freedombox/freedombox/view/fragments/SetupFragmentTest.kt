@@ -41,42 +41,42 @@ class SetupFragmentTest {
     fun shouldBeAbleToViewViewsInScreen() {
 
         val activity = Robolectric.setupActivity(SetupActivity::class.java)
-        val shadowActvity = Shadows.shadowOf(activity)
+        val shadowActivity = Shadows.shadowOf(activity)
 
-        val boxName = shadowActvity.findViewById(R.id.boxName)
+        val boxName = shadowActivity.findViewById(R.id.boxName)
         Assert.assertNotNull(boxName)
 
-        val discoveredUrl = shadowActvity.findViewById(R.id.discoveredUrl)
+        val discoveredUrl = shadowActivity.findViewById(R.id.discoveredUrl)
         Assert.assertNotNull(discoveredUrl)
 
-        val username = shadowActvity.findViewById(R.id.username)
+        val username = shadowActivity.findViewById(R.id.username)
         Assert.assertNotNull(username)
 
-        val password = shadowActvity.findViewById(R.id.password)
+        val password = shadowActivity.findViewById(R.id.password)
         Assert.assertNotNull(password)
 
-        var default = shadowActvity.findViewById(R.id.setDefault)
+        val default = shadowActivity.findViewById(R.id.setDefault)
         Assert.assertNotNull(default)
 
-        var saveConfig = shadowActvity.findViewById(R.id.saveConfig)
+        val saveConfig = shadowActivity.findViewById(R.id.saveConfig)
         Assert.assertNotNull(saveConfig)
-
     }
 
     @Test
     fun navigateToLauncherScreenOnButtonClick() {
 
         val activity = Robolectric.setupActivity(SetupActivity::class.java)
-        val shadowActvity = Shadows.shadowOf(activity)
-        shadowActvity.findViewById(R.id.saveConfig).performClick()
-        Assert.assertTrue(shadowActvity.isFinishing)
+        val shadowActivity = Shadows.shadowOf(activity)
+        shadowActivity.findViewById(R.id.saveConfig).performClick()
+
+        Assert.assertTrue(shadowActivity.isFinishing)
     }
 
     @Test
     fun checkInformationStoredInSharedPreferenceOnButtonClick() {
         val applicationContext = RuntimeEnvironment.application.applicationContext
         val sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(applicationContext)
+            .getDefaultSharedPreferences(applicationContext)
 
         val boxName = "freedomBox"
         val domain = "domain"
@@ -85,24 +85,20 @@ class SetupFragmentTest {
         val default = false
 
         val key = "default_box"
-        val value = "[{\"boxName\":\"" + boxName + "\"," +
-                "\"domain\":\"" + domain + "\"," +
-                "\"username\":\"" + username + "\"," +
-                "\"password\":\"" + password + "\"," +
-                "\"default\":" + default + "}]"
-
+        val value = """
+            [{"boxName":"$boxName","domain":"$domain","username":"$username","password":"$password","default":false}]
+        """.trim()
 
         val activity = Robolectric.setupActivity(SetupActivity::class.java)
-        val shadowActvity = Shadows.shadowOf(activity)
-        (shadowActvity.findViewById(R.id.boxName) as EditText).setText(boxName)
-        (shadowActvity.findViewById(R.id.discoveredUrl) as EditText).setText(domain)
-        (shadowActvity.findViewById(R.id.username) as EditText).setText(username)
-        (shadowActvity.findViewById(R.id.password) as EditText).setText(password)
-        (shadowActvity.findViewById(R.id.setDefault) as Switch).setChecked(default)
+        val shadowActivity = Shadows.shadowOf(activity)
 
-        shadowActvity.findViewById(R.id.saveConfig).performClick()
+        (shadowActivity.findViewById(R.id.boxName) as EditText).setText(boxName)
+        (shadowActivity.findViewById(R.id.discoveredUrl) as EditText).setText(domain)
+        (shadowActivity.findViewById(R.id.username) as EditText).setText(username)
+        (shadowActivity.findViewById(R.id.password) as EditText).setText(password)
+        (shadowActivity.findViewById(R.id.setDefault) as Switch).isChecked = default
+
+        shadowActivity.findViewById(R.id.saveConfig).performClick()
         Assert.assertEquals(value, sharedPreferences.getString(key, null))
-
     }
-
 }

@@ -42,7 +42,7 @@ class SplashFragmentTest {
     val key = "default_box"
     val applicationContext = RuntimeEnvironment.application.applicationContext
     val sharedPreferences = PreferenceManager
-            .getDefaultSharedPreferences(applicationContext)
+        .getDefaultSharedPreferences(applicationContext)
 
     @After
     fun destroy() {
@@ -77,7 +77,7 @@ class SplashFragmentTest {
         val shadowActvity = Shadows.shadowOf(activity)
         val expectedIntent = Intent(activity, LauncherActivity::class.java)
         Assert.assertEquals(expectedIntent.javaClass,
-                shadowActvity.nextStartedActivity.javaClass)
+            shadowActvity.nextStartedActivity.javaClass)
 
     }
 
@@ -89,7 +89,7 @@ class SplashFragmentTest {
         val expectedIntent = Intent(activity, DiscoveryActivity::class.java)
         shadowActvity.findViewById(R.id.btnSplashNext).performClick()
         Assert.assertEquals(expectedIntent.javaClass,
-                shadowActvity.nextStartedActivity.javaClass)
+            shadowActvity.nextStartedActivity.javaClass)
     }
 
 }

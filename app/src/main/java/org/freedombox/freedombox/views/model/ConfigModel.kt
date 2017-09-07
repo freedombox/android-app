@@ -20,18 +20,17 @@ package org.freedombox.freedombox.views.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class ConfigModel( val boxName: String,
-                        val domain: String,
-                        val username: String,
-                        val password: String,
-                        val default: Boolean): Parcelable{
+data class ConfigModel(private val boxName: String,
+                       val domain: String,
+                       private val username: String,
+                       private val password: String,
+                       private val default: Boolean) : Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte()) {
-    }
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(boxName)
@@ -41,18 +40,11 @@ data class ConfigModel( val boxName: String,
         parcel.writeByte(if (default) 1 else 0)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents() = 0
 
     companion object CREATOR : Parcelable.Creator<ConfigModel> {
-        override fun createFromParcel(parcel: Parcel): ConfigModel {
-            return ConfigModel(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel) = ConfigModel(parcel)
 
-        override fun newArray(size: Int): Array<ConfigModel?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int) = arrayOfNulls<ConfigModel>(size)
     }
-
 }

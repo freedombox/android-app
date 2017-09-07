@@ -20,7 +20,6 @@ package org.freedombox.freedombox.utils.storage
 import android.content.Context
 import android.content.SharedPreferences
 import org.freedombox.freedombox.BuildConfig
-import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
 import org.freedombox.freedombox.views.model.ConfigModel
 import org.junit.Assert
 import org.junit.Before
@@ -34,18 +33,18 @@ import org.robolectric.annotation.Config
 @Config(constants = BuildConfig::class)
 class SharedPreferenceTest {
 
-    val preferenceName = "PrefTest"
-    val key = "preference"
-    val value = "success"
+    private val preferenceName = "PrefTest"
+    private val key = "preference"
+    private val value = "success"
     private lateinit var sharedPreference: SharedPreferences
 
     @Before
     fun setup() {
         sharedPreference = RuntimeEnvironment.application
-                .getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+            .getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
     }
 
-    fun putKeyAndValueIntoSharedPreference() {
+    private fun putKeyAndValueIntoSharedPreference() {
         val edit = sharedPreference.edit()
         edit.putString(key, value)
         edit.commit()
@@ -53,14 +52,14 @@ class SharedPreferenceTest {
 
     @Test
     fun shouldReturnNullWhenKeyNotExist() {
-        putKeyAndValueIntoSharedPreference();
+        putKeyAndValueIntoSharedPreference()
         val returnString = getSharedPreference(sharedPreference, "not_found")
         Assert.assertEquals(null, returnString)
     }
 
     @Test
     fun shouldReturnValueWhenKeyExist() {
-        putKeyAndValueIntoSharedPreference();
+        putKeyAndValueIntoSharedPreference()
         val returnString = getSharedPreference(sharedPreference, key)
         Assert.assertEquals(value, returnString)
     }

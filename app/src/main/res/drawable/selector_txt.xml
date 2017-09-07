@@ -16,8 +16,8 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:state_focused="true" android:color="@color/colorPrimary"/>
-  <item android:state_pressed="true" android:state_enabled="false" android:color="@color/colorPrimaryDark" />
-  <item android:state_enabled="false" android:color="@color/blueGrey" />
-  <item android:color="@color/cardview_dark_background"/>
+    <item android:state_focused="true" android:color="@color/colorPrimary"/>
+    <item android:state_pressed="true" android:state_enabled="false" android:color="@color/colorPrimaryDark"/>
+    <item android:state_enabled="false" android:color="@color/blueGrey"/>
+    <item android:color="@color/cardview_dark_background"/>
 </selector>

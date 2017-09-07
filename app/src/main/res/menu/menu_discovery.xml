@@ -19,8 +19,8 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.saikailas.ooty.organization.ArticleDetailActivity">
-  <item
-    android:id="@+id/action_settings"
-    android:icon="@drawable/ic_logo"
-    app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_logo"
+        app:showAsAction="always"/>
 </menu>
