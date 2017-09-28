@@ -57,7 +57,7 @@ dependencies {
 
     compile 'com.android.volley:volley:1.0.0'
 
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.google.code.gson:gson:2.8.2'
 
     // Dagger
     compile "com.google.dagger:dagger:$dagger_version"
@@ -71,7 +71,7 @@ dependencies {
     // Test
     testCompile 'junit:junit:4.12'
     testCompile "org.robolectric:robolectric:$robolectric_version"
-    testCompile "org.robolectric:shadows-support-v4:$robolectric_version"
+    testCompile "org.robolectric:shadows-support-v4:3.3.2"
 }
 
 repositories {
