@@ -30,7 +30,7 @@ abstract class BaseFragment : android.support.v4.app.Fragment(), IBaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val appComponent = (activity.application as FreedomBoxApp).appComponent
+        val appComponent = (activity!!.application as FreedomBoxApp).appComponent
         appComponent.inject(this)
         injectFragment(appComponent)
     }
@@ -45,7 +45,7 @@ abstract class BaseFragment : android.support.v4.app.Fragment(), IBaseView {
 
     override fun showSnackMessage(message: String, duration: Int) {
         Snackbar.make(
-            activity.findViewById(android.R.id.content),
+            activity!!.findViewById(android.R.id.content),
             message,
             duration
         ).show()

@@ -38,8 +38,8 @@ class DiscoveryListAdapter(val context: Context,
             inflaterView = inflater.inflate(R.layout.discovery_listview, null)
         }
 
-        val boxName = inflaterView?.findViewById(R.id.boxName) as TextView
-        val port = inflaterView.findViewById(R.id.port) as TextView
+        val boxName = inflaterView!!.findViewById<TextView>(R.id.boxName)
+        val port = inflaterView.findViewById<TextView>(R.id.port)
 
         boxName.text = boxNameList[position]
         port.text = portList[position]

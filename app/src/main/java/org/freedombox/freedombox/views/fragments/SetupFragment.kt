@@ -38,12 +38,12 @@ class SetupFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val currentBoxName = activity.intent.getStringExtra(getString(R.string.current_box))
+        val currentBoxName = activity!!.intent.getStringExtra(getString(R.string.current_box))
         discoveredUrl.setText(currentBoxName)
 
         saveConfig.setOnClickListener {
             storeEnteredDetailsInPreference()
-            activity.finish()
+            activity!!.finish()
         }
 
     }
