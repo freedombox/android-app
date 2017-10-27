@@ -62,7 +62,7 @@ class DiscoveryFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        nsdManager = activity.getSystemService(NSD_SERVICE) as NsdManager
+        nsdManager = activity!!.getSystemService(NSD_SERVICE) as NsdManager
 
         discoveryListener = FBXDiscoveryListener()
 
@@ -84,7 +84,7 @@ class DiscoveryFragment : BaseFragment() {
 
             configuredGroup.visibility = View.VISIBLE
 
-            adapter = DiscoveryListAdapter(activity.applicationContext,
+            adapter = DiscoveryListAdapter(activity!!.applicationContext,
                 configuredBoxList,
                 configuredPortList)
             configuredListView.adapter = adapter
@@ -97,7 +97,7 @@ class DiscoveryFragment : BaseFragment() {
 
         }
 
-        adapter = DiscoveryListAdapter(activity.applicationContext,
+        adapter = DiscoveryListAdapter(activity!!.applicationContext,
             discoveredBoxList,
             discoveredPortList)
         discoveredListView.adapter = adapter
@@ -147,7 +147,7 @@ class DiscoveryFragment : BaseFragment() {
                 discoveredBoxList.add(serviceInfo.host.toString())
                 discoveredPortList.add(serviceInfo.port.toString())
             }
-            activity.runOnUiThread {
+            activity!!.runOnUiThread {
                 adapter.notifyDataSetChanged()
                 Log.i(TAG, "runOnUiThread")
             }

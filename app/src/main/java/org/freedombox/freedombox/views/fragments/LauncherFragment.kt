@@ -48,12 +48,12 @@ class LauncherFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = GridAdapter(activity.applicationContext, imageRenderer)
+        val adapter = GridAdapter(activity!!.applicationContext, imageRenderer)
 
         appGrid.adapter = adapter
 
         fab.setOnClickListener {
-            val currentBoxName = activity.intent.getStringExtra(getString(R.string.current_box))
+            val currentBoxName = activity!!.intent.getStringExtra(getString(R.string.current_box))
             val intent = Intent(activity, SetupActivity::class.java)
             intent.putExtra(getString(R.string.current_box), currentBoxName)
             startActivity(intent)
@@ -78,7 +78,7 @@ class LauncherFragment : BaseFragment() {
         //TODO: Use the URL from settings once it is setup
         val url = listOf(DEFAULT_IP, SERVICES_URL).joinToString(separator = "/")
 
-        getFBXApps(context, url, onSuccess, onFailure)
+        getFBXApps(context!!, url, onSuccess, onFailure)
     }
 
     companion object {
