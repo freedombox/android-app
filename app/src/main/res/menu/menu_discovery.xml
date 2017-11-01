@@ -22,5 +22,6 @@
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_logo"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:title="@string/settings" />
 </menu>
