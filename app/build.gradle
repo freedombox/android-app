@@ -38,6 +38,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 kapt {
@@ -70,8 +75,9 @@ dependencies {
 
     // Test
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:$robolectric_version"
     testCompile "org.robolectric:shadows-support-v4:3.3.2"
+
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }
 
 repositories {
