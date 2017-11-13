@@ -18,18 +18,19 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/rel_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rel_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card_view:cardElevation="2dp"
+        card_view:cardBackgroundColor="@android:color/holo_red_light"
         card_view:cardCornerRadius="3dp"
-        android:background="@color/white"
+        card_view:cardElevation="2dp"
         card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -40,32 +41,69 @@
 
             <ImageView
                 android:id="@+id/appIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:scaleType="centerInside"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_logo"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/application_icon"
+                android:padding="5dp"
+                android:scaleType="center" />
 
-            <TextView
-                android:id="@+id/appName"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:layout_below="@+id/appIcon"
-                android:layout_marginBottom="5dp"
-                android:layout_centerInParent="true"/>
+                android:layout_below="@+id/appIcon">
 
-            <TextView
-                android:id="@+id/appDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/appName"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:layout_centerInParent="true"/>
+                <TextView
+                    android:id="@+id/appName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/infoImageView"
+                    android:layout_toStartOf="@+id/infoImageView"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:textColor="@android:color/white"
+                    tools:text="Conversations" />
 
+                <TextView
+                    android:id="@+id/appDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/appName"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/infoImageView"
+                    android:layout_toStartOf="@+id/infoImageView"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:textColor="@android:color/white"
+                    tools:text="Conversations Category" />
+
+                <ImageView
+                    android:id="@+id/infoImageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@string/information"
+                    android:padding="5dp"
+                    android:src="@android:drawable/ic_dialog_info" />
+
+                <ImageView
+                    android:id="@+id/installationStatusImageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/appDescription"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@string/installation_status"
+                    android:padding="5dp"
+                    android:src="@android:drawable/ic_dialog_info" />
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

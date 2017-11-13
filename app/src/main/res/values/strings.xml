@@ -15,4 +15,9 @@
     <string name="current_box" translatable="false">current_box</string>
     <string name="default_box" translatable="false">default_box</string>
     <string name="settings">Settings</string>
+    <string name="recently_connected_to">Recently connected to</string>
+    <string name="freedom_boxes">Freedom Boxes</string>
+    <string name="application_icon">Application Icon</string>
+    <string name="information">Information</string>
+    <string name="installation_status">Installation Status</string>
 </resources>

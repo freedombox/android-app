@@ -49,12 +49,12 @@ class SplashFragment : BaseFragment() {
 
     private fun openLauncherIfConfigured() {
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
-            getString(R.string.default_box))
+                getString(R.string.default_box))
 
         configuredBoxesJSON?.let {
             val gson = GsonBuilder().setPrettyPrinting().create()
             val configuredBoxList = gson.fromJson<ArrayList<ConfigModel>>(it,
-                object : TypeToken<List<ConfigModel>>() {}.type)
+                    object : TypeToken<List<ConfigModel>>() {}.type)
             val intent = Intent(activity, LauncherActivity::class.java)
             intent.putParcelableArrayListExtra(getString(R.string.current_box), configuredBoxList)
             startActivity(intent)

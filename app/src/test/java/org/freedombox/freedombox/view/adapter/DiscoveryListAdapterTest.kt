@@ -46,17 +46,21 @@ class DiscoveryListAdapterTest {
         portList.add(portName1)
         boxNameList.add(boxName2)
         portList.add(portName2)
-        listAdapter = DiscoveryListAdapter(applicationContext, boxNameList, portList)
+        listAdapter = DiscoveryListAdapter(applicationContext, boxNameList, portList, object : DiscoveryListAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 
     @Test
     fun testItemCount() {
-        Assert.assertEquals(listAdapter.count, 2)
+        Assert.assertEquals(listAdapter.itemCount, 2)
     }
 
     @Test
     fun testGetItemAtPositionZero() {
-        Assert.assertEquals(listAdapter.getItem(0), boxNameList[0])
+        Assert.assertEquals(listAdapter.getItemId(0), boxNameList[0])
     }
 
     @Test

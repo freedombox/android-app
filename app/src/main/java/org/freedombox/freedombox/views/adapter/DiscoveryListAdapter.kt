@@ -18,38 +18,47 @@
 package org.freedombox.freedombox.views.adapter
 
 import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
 import org.freedombox.freedombox.R
 
-class DiscoveryListAdapter(val context: Context,
+class DiscoveryListAdapter(private val context: Context,
                            private val boxNameList: List<String>,
-                           private val portList: List<String>) : BaseAdapter() {
+                           private val portList: List<String>,
+                           private val itemClickListener: DiscoveryListAdapter.OnItemClickListener) : RecyclerView.Adapter<DiscoveryListAdapter.DiscoveryListItemViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var inflaterView = convertView
-
-        if (inflaterView == null) {
-            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
-                as LayoutInflater
-            inflaterView = inflater.inflate(R.layout.discovery_listview, null)
+    override fun onBindViewHolder(holder: DiscoveryListItemViewHolder?, position: Int) {
+        holder.let {
+            holder?.updateView(boxNameList[position], portList[position])
         }
-
-        val boxName = inflaterView!!.findViewById<TextView>(R.id.boxName)
-        val port = inflaterView.findViewById<TextView>(R.id.port)
-
-        boxName.text = boxNameList[position]
-        port.text = portList[position]
-
-        return inflaterView
     }
 
-    override fun getItem(position: Int) = boxNameList[position]
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DiscoveryListItemViewHolder {
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.discovery_listview, null)
+        return DiscoveryListItemViewHolder(view)
+    }
 
-    override fun getItemId(position: Int) = boxNameList[position].hashCode().toLong()
+    override fun getItemCount(): Int = boxNameList.size
 
-    override fun getCount() = boxNameList.size
+    inner class DiscoveryListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var boxNameTextView: TextView = view.findViewById<TextView>(R.id.boxName) as TextView
+        var portNumberTextView: TextView = view.findViewById<TextView>(R.id.port) as TextView
+
+        init {
+            view.setOnClickListener { itemClickListener.onItemClick(adapterPosition) }
+        }
+
+        fun updateView(boxName: String, portNumber: String) {
+            boxNameTextView.text = boxName
+            portNumberTextView.text = portNumber
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 }
