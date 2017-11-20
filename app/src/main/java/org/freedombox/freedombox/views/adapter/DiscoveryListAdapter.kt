@@ -58,6 +58,8 @@ class DiscoveryListAdapter(private val context: Context,
         }
     }
 
+    fun getItem(position: Int) : String = boxNameList.get(position)
+
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }

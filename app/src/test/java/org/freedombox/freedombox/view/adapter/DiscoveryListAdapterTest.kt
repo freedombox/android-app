@@ -60,12 +60,6 @@ class DiscoveryListAdapterTest {
 
     @Test
     fun testGetItemAtPositionZero() {
-        Assert.assertEquals(listAdapter.getItemId(0), boxNameList[0])
+        Assert.assertEquals(listAdapter.getItem(0), boxNameList[0])
     }
-
-    @Test
-    fun testGetItemIdAtPositionOne() {
-        Assert.assertEquals(listAdapter.getItemId(1), boxNameList[1].hashCode().toLong())
-    }
-
 }
