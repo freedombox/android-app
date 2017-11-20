@@ -23,41 +23,46 @@ import android.content.SharedPreferences
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import com.google.gson.GsonBuilder
+import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.fragment_discovery.configuredGroup
-import kotlinx.android.synthetic.main.fragment_discovery.configuredListView
-import kotlinx.android.synthetic.main.fragment_discovery.discoveredListView
+import kotlinx.android.synthetic.main.fragment_discovery.*
 import org.freedombox.freedombox.R
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.utils.storage.getSharedPreference
 import org.freedombox.freedombox.views.activities.LauncherActivity
 import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter
+import org.freedombox.freedombox.views.adapter.DiscoveryListAdapter.OnItemClickListener
 import org.freedombox.freedombox.views.model.ConfigModel
 import javax.inject.Inject
 
 class DiscoveryFragment : BaseFragment() {
-    val TAG = "DISCOVERY_FRAGMENT"
 
-    lateinit var adapter: DiscoveryListAdapter
+    private val TAG: String = DiscoveryFragment::class.java.simpleName
 
-    val discoveredBoxList = mutableListOf<String>()
+    private lateinit var discoveredBoxListAdapter: DiscoveryListAdapter
+
+    private val discoveredBoxList = mutableListOf<String>()
+
     private var configuredBoxList = listOf<String>()
 
-    val discoveredPortList = mutableListOf<String>()
+    private val discoveredPortList = mutableListOf<String>()
+
     private var configuredPortList = listOf<String>()
 
-    var configuredBoxSetupList = listOf<ConfigModel>()
+    private var configuredBoxSetupList = listOf<ConfigModel>()
 
     private val SERVICE = "_freedombox._tcp"
 
     @Inject lateinit var sharedPreferences: SharedPreferences
 
-    lateinit var nsdManager: NsdManager
+    private lateinit var nsdManager: NsdManager
 
     private lateinit var discoveryListener: FBXDiscoveryListener
+
+    @Inject lateinit var gson: Gson
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -69,14 +74,13 @@ class DiscoveryFragment : BaseFragment() {
         nsdManager.discoverServices(SERVICE, NsdManager.PROTOCOL_DNS_SD, discoveryListener)
 
         val configuredBoxesJSON = getSharedPreference(sharedPreferences,
-            getString(R.string.default_box))
+                getString(R.string.default_box))
 
 
         configuredBoxesJSON?.let {
-            val gson = GsonBuilder().setPrettyPrinting().create()
             configuredBoxSetupList += gson.
-                fromJson<List<ConfigModel>>(configuredBoxesJSON,
-                    object : TypeToken<List<ConfigModel>>() {}.type)
+                    fromJson<List<ConfigModel>>(configuredBoxesJSON,
+                            object : TypeToken<List<ConfigModel>>() {}.type)
             for (configModel in configuredBoxSetupList) {
                 configuredBoxList += configModel.domain
                 configuredPortList += "80"
@@ -84,30 +88,31 @@ class DiscoveryFragment : BaseFragment() {
 
             configuredGroup.visibility = View.VISIBLE
 
-            adapter = DiscoveryListAdapter(activity!!.applicationContext,
-                configuredBoxList,
-                configuredPortList)
-            configuredListView.adapter = adapter
+            val configuredBoxListAdapter = DiscoveryListAdapter(activity!!.applicationContext,
+                    configuredBoxList,
+                    configuredPortList, object : OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val intent = Intent(activity, LauncherActivity::class.java)
+                    intent.putExtra(getString(R.string.current_box), configuredBoxList[position])
+                    startActivity(intent)
+                }
+            })
+            configuredListView.layoutManager = LinearLayoutManager(activity)
+            configuredListView.adapter = configuredBoxListAdapter
+        }
 
-            configuredListView.setOnItemClickListener { _, _, position, _ ->
+        discoveredBoxListAdapter = DiscoveryListAdapter(activity!!.applicationContext,
+                discoveredBoxList,
+                discoveredPortList, object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
                 val intent = Intent(activity, LauncherActivity::class.java)
-                intent.putExtra(getString(R.string.current_box), configuredBoxList[position])
+                intent.putExtra(getString(R.string.current_box),
+                        discoveredBoxList[position])
                 startActivity(intent)
             }
-
-        }
-
-        adapter = DiscoveryListAdapter(activity!!.applicationContext,
-            discoveredBoxList,
-            discoveredPortList)
-        discoveredListView.adapter = adapter
-
-        discoveredListView.setOnItemClickListener { _, _, position, _ ->
-            val intent = Intent(activity, LauncherActivity::class.java)
-            intent.putExtra(getString(R.string.current_box),
-                discoveredBoxList[position])
-            startActivity(intent)
-        }
+        })
+        discoveredListView.layoutManager = LinearLayoutManager(activity)
+        discoveredListView.adapter = discoveredBoxListAdapter
     }
 
     companion object {
@@ -148,8 +153,7 @@ class DiscoveryFragment : BaseFragment() {
                 discoveredPortList.add(serviceInfo.port.toString())
             }
             activity!!.runOnUiThread {
-                adapter.notifyDataSetChanged()
-                Log.i(TAG, "runOnUiThread")
+                discoveredBoxListAdapter.notifyDataSetChanged()
             }
 
         }
@@ -157,8 +161,8 @@ class DiscoveryFragment : BaseFragment() {
 
     inner class FBXDiscoveryListener : NsdManager.DiscoveryListener {
         override fun onServiceFound(serviceInfo: NsdServiceInfo) {
-            Log.d(TAG, serviceInfo.serviceType)
-            Log.d(TAG, serviceInfo.serviceName)
+            Log.d(TAG, String.format("onServiceFound() serviceType %s", serviceInfo.serviceType))
+            Log.d(TAG, String.format("onServiceFound() serviceName %s", serviceInfo.serviceName))
             discoveredBoxList.clear()
             discoveredPortList.clear()
             nsdManager.resolveService(serviceInfo, FBXResolveListener())

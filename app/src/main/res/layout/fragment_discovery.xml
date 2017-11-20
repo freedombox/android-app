@@ -18,27 +18,31 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/configuredGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:visibility="visible"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/configured"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blueGrey"
-            android:text="@string/configured"/>
+            android:padding="10dp"
+            android:text="@string/configured" />
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/configuredListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/configured"/>
+            android:layout_below="@+id/configured"
+            tools:listitem="@layout/discovery_listview" />
 
     </RelativeLayout>
 
@@ -53,13 +57,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blueGrey"
-            android:text="@string/discovered"/>
+            android:padding="10dp"
+            android:text="@string/discovered" />
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/discoveredListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/discovered"/>
+            android:layout_below="@+id/discovered" />
 
     </RelativeLayout>
 

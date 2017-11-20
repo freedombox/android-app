@@ -17,14 +17,11 @@
 
 package org.freedombox.freedombox.views.fragments
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.fragment_launcher.appGrid
-import kotlinx.android.synthetic.main.fragment_launcher.appsNotAvailable
-import kotlinx.android.synthetic.main.fragment_launcher.fab
+import kotlinx.android.synthetic.main.fragment_launcher.*
 import org.freedombox.freedombox.APP_RESPONSE
 import org.freedombox.freedombox.DEFAULT_IP
 import org.freedombox.freedombox.R
@@ -32,7 +29,6 @@ import org.freedombox.freedombox.SERVICES_URL
 import org.freedombox.freedombox.components.AppComponent
 import org.freedombox.freedombox.utils.ImageRenderer
 import org.freedombox.freedombox.utils.network.getFBXApps
-import org.freedombox.freedombox.views.activities.SetupActivity
 import org.freedombox.freedombox.views.adapter.GridAdapter
 import org.json.JSONObject
 import javax.inject.Inject
@@ -52,12 +48,12 @@ class LauncherFragment : BaseFragment() {
 
         appGrid.adapter = adapter
 
-        fab.setOnClickListener {
+        /*fab.setOnClickListener {
             val currentBoxName = activity!!.intent.getStringExtra(getString(R.string.current_box))
             val intent = Intent(activity, SetupActivity::class.java)
             intent.putExtra(getString(R.string.current_box), currentBoxName)
             startActivity(intent)
-        }
+        }*/
 
         val onSuccess = fun(response: JSONObject) {
             val services = JsonParser().parse(response["services"].toString()).asJsonArray

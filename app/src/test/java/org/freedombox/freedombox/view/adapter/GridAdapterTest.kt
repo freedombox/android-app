@@ -41,11 +41,11 @@ class GridAdapterTest {
     private var jsonArray = JsonArray()
     private val jsonObject = JsonParser().parse("""
     {
-      "label": {
+      "name": {
         "en": "conversations",
         "te": "సంభాషణలు"
       },
-      "description": {
+      "short_description": {
         "en": "someDescription"
       },
       "icon": "icons/conversations",

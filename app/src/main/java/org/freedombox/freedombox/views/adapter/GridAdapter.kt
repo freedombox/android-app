@@ -30,7 +30,9 @@ import kotlinx.android.synthetic.main.app_container.view.appDescription
 import kotlinx.android.synthetic.main.app_container.view.appIcon
 import kotlinx.android.synthetic.main.app_container.view.appName
 import kotlinx.android.synthetic.main.app_container.view.cardHolder
+import org.freedombox.freedombox.DEFAULT_IP
 import org.freedombox.freedombox.R
+import org.freedombox.freedombox.SERVICES_URL
 import org.freedombox.freedombox.utils.ImageRenderer
 import java.util.Locale
 
@@ -40,21 +42,24 @@ class GridAdapter(val context: Context, val imageRenderer: ImageRenderer) : Base
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val inflater = context
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView = inflater.inflate(R.layout.app_container, null)
         val appDetail = items[position].asJsonObject
         val locale = Locale.getDefault()
 
-        rowView.appName.text = appDetail["label"]
-            .asJsonObject[locale.language]
-            .asString
-        rowView.appDescription.text = appDetail["description"]
-            .asJsonObject[locale.language]
-            .asString
+        rowView.appName.text = appDetail["name"]
+                .asJsonObject[locale.language]
+                .asString
+        rowView.appDescription.text = appDetail["short_description"]?.let {
+            appDetail["short_description"]
+                    .asJsonObject[locale.language]
+                    .asString
+        }
 
+        val url = listOf(DEFAULT_IP, appDetail["icon"].asString).joinToString(separator = "/")
         imageRenderer.loadImageFromURL(
-            Uri.parse(appDetail["icon"].asString),
-            rowView.appIcon
+                Uri.parse(url),
+                rowView.appIcon
         )
 
         rowView.appIcon.setOnClickListener {}

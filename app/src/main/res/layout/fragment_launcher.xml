@@ -16,15 +16,15 @@
 ~ You should have received a copy of the GNU General Public License
 ~ along with FreedomBox. If not, see <http://www.gnu.org/licenses/>.
 -->
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -34,24 +34,20 @@
             android:layout_centerInParent="true"
             android:text="@string/msg_apps_not_available"
             android:textAlignment="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <GridView
             android:id="@+id/appGrid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:horizontalSpacing="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:horizontalSpacing="16dp"
             android:numColumns="auto_fit"
-            android:verticalSpacing="@dimen/activity_vertical_margin"/>
+            android:scrollbars="none"
+            android:verticalSpacing="16dp" />
 
 
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"/>
 </android.support.design.widget.CoordinatorLayout>

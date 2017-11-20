@@ -20,6 +20,8 @@ package org.freedombox.freedombox.modules
 import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import org.freedombox.freedombox.utils.ImageRenderer
@@ -42,4 +44,7 @@ class AppModule(val application: Application) {
     @Singleton
     fun provideImageRenderer(): ImageRenderer =
         ImageRenderer(application.applicationContext)
+
+    @Provides
+    fun provideGson() : Gson = GsonBuilder().setPrettyPrinting().create();
 }
