@@ -17,6 +17,6 @@
 
 package org.freedombox.freedombox
 
-const val DEFAULT_IP = "https://localhost:4430/plinth/api/1/services"
+const val DEFAULT_IP = "https://10.42.0.1:4430/plinth/api/1/services"
 const val SERVICES_URL = "services.json"
 const val APP_RESPONSE = "appResponse"
